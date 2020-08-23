@@ -11,8 +11,11 @@ export default function Podcast({ title, podcasts }) {
         <Podcasts
           key={podcast.id}
           nr={podcast.nr}
+          publish={podcast.publish}
+          duration={podcast.duration}
           description={podcast.description}
           subtitle={podcast.subtitle}
+          url={podcast.url}
         />
       ))
     )
