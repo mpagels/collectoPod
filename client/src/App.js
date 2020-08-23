@@ -1,25 +1,29 @@
 import React, { useEffect, useState } from 'react'
-import Podcast from './components/Podcast/Podcast'
 import StartPage from './pages/StartPage'
+import PodCast from './pages/Podcast'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+
 function App() {
   const [podcasts, setPodcasts] = useState([[]])
 
-  // useEffect(() => {
-  //   fetch('http://localhost:4000')
-  //     .then((res) => res.json())
-  //     .then(setPodcasts)
-  // }, [])
-  // const mordLust = podcasts[0].map((podcast) => (
-  //   <Podcast
-  //     key={podcast.id}
-  //     nr={podcast.nr}
-  //     description={podcast.description}
-  //     subtitle={podcast.subtitle}
-  //   />
-  // ))
+  useEffect(() => {
+    fetch('http://localhost:4000')
+      .then((res) => res.json())
+      .then((data) => setPodcasts(data[0]))
+  }, [])
 
-  // return <>{mordLust}</>
-  return <StartPage />
+  return (
+    <Router>
+      <Switch>
+        <Route path="/verbrechen-von-nebenan">
+          <PodCast title="Verbrechen von nebenan" podcasts={podcasts} />
+        </Route>
+        <Route path="/">
+          <StartPage />
+        </Route>
+      </Switch>
+    </Router>
+  )
 }
 
 export default App
