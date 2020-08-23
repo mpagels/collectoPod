@@ -5,9 +5,8 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 function App() {
   const [podcasts, setPodcasts] = useState([[]])
-
   useEffect(() => {
-    fetch('http://localhost:4000')
+    fetch(`http://${window.location.hostname}:4000`)
       .then((res) => res.json())
       .then((data) => setPodcasts(data[0]))
   }, [])
