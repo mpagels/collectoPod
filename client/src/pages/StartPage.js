@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
+import { Switch, Route, Link } from 'react-router-dom'
+
 import mordlustLogo from '../assets/img/mordlust-big.jpg'
 import verbrechenVonNebenAnLogo from '../assets/img/verbrechen-von-nebenan-big.jpg'
 import zeitVerbrechenLogo from '../assets/img/zeit-verbrechen-big.jpg'
@@ -15,13 +17,17 @@ export default function StartPage() {
 
   const showCrime = () => {
     return (
-      <Podcasts>
-        <NavigateTo img={verbrechenVonNebenAnLogo} />
-        <NavigateTo img={mordlustLogo} />
-        <NavigateTo img={zeitVerbrechenLogo} />
-        <NavigateTo img={darfsEinBisschenMordLogo} />
-        <NavigateTo img={verbrechenDerVergangenheitLogo} />
-      </Podcasts>
+      <Switch>
+        <Podcasts>
+          <Link to="/verbrechen-von-nebenan">
+            <NavigateTo img={verbrechenVonNebenAnLogo} />
+          </Link>
+          <NavigateTo img={mordlustLogo} />
+          <NavigateTo img={zeitVerbrechenLogo} />
+          <NavigateTo img={darfsEinBisschenMordLogo} />
+          <NavigateTo img={verbrechenDerVergangenheitLogo} />
+        </Podcasts>
+      </Switch>
     )
   }
 
