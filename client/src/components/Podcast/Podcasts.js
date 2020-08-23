@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 
-export default function Podcast({
+export default function Podcasts({
   key,
   nr,
   subtitle,
