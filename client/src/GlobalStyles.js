@@ -8,6 +8,7 @@ export default createGlobalStyle`
 
 body {
     margin: 0;
-
+    background-color: #313133;
+    color: #ffffff;
 }
 `
