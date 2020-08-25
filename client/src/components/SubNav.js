@@ -10,21 +10,21 @@ import verbrechenDerVergangenheitLogo from '../assets/img/verbrechen-der-vergang
 export default function SubNav() {
   return (
     <>
-      <Link to="/verbrechen-von-nebenan">
+      <StyledLink to="/verbrechen-von-nebenan">
         <NavLogos src={verbrechenVonNebenAnLogo} />
-      </Link>
-      <Link to="/mordlust">
+      </StyledLink>
+      <StyledLink to="/mordlust">
         <NavLogos src={mordlustLogo} />
-      </Link>
-      <Link to="/zeit-verbrechen">
+      </StyledLink>
+      <StyledLink to="/zeit-verbrechen">
         <NavLogos src={zeitVerbrechenLogo} />
-      </Link>
-      <Link to="/darfs-ein-bisserl-mord-sein">
+      </StyledLink>
+      <StyledLink to="/darfs-ein-bisserl-mord-sein">
         <NavLogos src={darfsEinBisschenMordLogo} />
-      </Link>
-      <Link to="/verbrechen_der_vergangenheit">
+      </StyledLink>
+      <StyledLink to="/verbrechen_der_vergangenheit">
         <NavLogos src={verbrechenDerVergangenheitLogo} />
-      </Link>
+      </StyledLink>
     </>
   )
 }
@@ -33,4 +33,7 @@ const NavLogos = styled.img`
   border-radius: 10px;
   cursor: pointer;
   box-shadow: 0 0 5px black;
+`
+const StyledLink = styled(Link)`
+  display: flex;
 `
