@@ -21,9 +21,11 @@ export default function Podcasts({
         <Overview>
           <EpisodeNr>{nr}</EpisodeNr>
           <EpisodeInfos>
-            <EpisodeTitle>{subtitle}</EpisodeTitle>
-            <Published>Published: {publish}</Published>
-            <Duration>Duration: {duration}</Duration>
+            <Title>{subtitle}</Title>
+            <div>
+              <Published>Published: {publish}</Published>
+              <Duration>Duration: {duration}</Duration>
+            </div>
           </EpisodeInfos>
         </Overview>
         {isOpen && <Description>{description}</Description>}
@@ -43,7 +45,8 @@ const Card = styled.section`
   background-color: #3c3c3e;
   border-radius: 10px;
   margin: 15px;
-  box-shadow: 0 0 15px black;
+  box-shadow: 0 0 10px black;
+  font-family: 'Nanum Gothic', sans-serif;
 `
 
 const Overview = styled.div`
@@ -54,14 +57,15 @@ const Overview = styled.div`
 const EpisodeNr = styled.div`
   align-self: center;
   justify-self: center;
-  font-size: 32px;
+  font-size: 26px;
 `
 const EpisodeInfos = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 `
-const EpisodeTitle = styled.div`
-  padding: 6px;
+const Title = styled.div`
+  padding-top: 6px;
 `
 
 const ReadMore = styled.div`
@@ -84,11 +88,18 @@ const Download = styled.a`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  color: white;
+  text-decoration: none;
 `
-const Published = styled.div``
-const Duration = styled.div``
+const Published = styled.div`
+  font-size: 10px;
+`
+const Duration = styled.div`
+  font-size: 10px;
+`
 
 const Description = styled.div`
   text-align: justify;
   padding: 25px;
+  font-size: 14px;
 `
