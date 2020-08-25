@@ -63,9 +63,7 @@ export default function StartPage() {
     <Screen>
       <Header>
         <AppTitle>collectoPod</AppTitle>
-        <AppSubTitle>
-          find & download the latest of your favorite podcasts
-        </AppSubTitle>
+        <AppSubTitle>have your favorite podcasts in one place</AppSubTitle>
       </Header>
       <PodcastSwitcher>
         <Switcher onClick={() => setIsSecondPodcasts(false)}>Crime</Switcher>
