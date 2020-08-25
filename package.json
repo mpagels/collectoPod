@@ -7,13 +7,13 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm-run-all --parallel client server",
     "client": "cd client && npm start",
-    "server": "cd server && npm start"
+    "server": "cd server && npm start",
+    "postinstall": "cd client && npm i && cd ../server && npm i"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "npm-run-all": "^4.1.5",
-    "run-all": "^1.0.1"
+    "npm-run-all": "^4.1.5"
   }
 }
