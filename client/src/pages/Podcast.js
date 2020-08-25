@@ -7,34 +7,23 @@ import { ReactComponent as ArrowBack } from '../assets/svg/forward-white-24dp.sv
 import { Link } from 'react-router-dom'
 
 export default function Podcast({ title, podcastName, podcastGenre }) {
-  const [podcast, setPodcast] = useState([])
-  const [argument, setArgument] = useState(podcastName)
-  console.log(argument)
-  useEffect(() => {
-    const podcasts = JSON.parse(localStorage.getItem('podcasts'))
-    const find = podcasts[0][podcastGenre].filter((podcastObj) =>
-      Object.keys(podcastObj).includes(podcastName)
+  const podcasts = JSON.parse(localStorage.getItem('podcasts'))
+  const find = podcasts[0][podcastGenre].filter((podcastObj) =>
+    Object.keys(podcastObj).includes(podcastName)
+  )
+  const podcast = find[0][podcastName].map((podcast) => {
+    return (
+      <Podcasts
+        key={podcast.id}
+        nr={podcast.nr}
+        publish={podcast.publish}
+        duration={podcast.duration}
+        description={podcast.description}
+        subtitle={podcast.subtitle}
+        url={podcast.url}
+      />
     )
-    setPodcast(
-      find[0][podcastName].map((podcast) => {
-        return (
-          <Podcasts
-            key={podcast.id}
-            nr={podcast.nr}
-            publish={podcast.publish}
-            duration={podcast.duration}
-            description={podcast.description}
-            subtitle={podcast.subtitle}
-            url={podcast.url}
-          />
-        )
-      })
-    )
-
-    return () => {
-      setPodcast([])
-    }
-  }, [])
+  })
 
   return (
     <Screen>
