@@ -1,16 +1,15 @@
 import React, { useState } from 'react'
+import { Link, Switch } from 'react-router-dom'
 import styled from 'styled-components/macro'
-import { Switch, Route, Link } from 'react-router-dom'
-
-import mordlustLogo from '../assets/img/mordlust-big.jpg'
-import verbrechenVonNebenAnLogo from '../assets/img/verbrechen-von-nebenan-big.jpg'
-import zeitVerbrechenLogo from '../assets/img/zeit-verbrechen-big.jpg'
-import darfsEinBisschenMordLogo from '../assets/img/darfs-ein-bisschen-mord-sein-big.jpg'
-import verbrechenDerVergangenheitLogo from '../assets/img/verbrechen-der-vergangenheit_big.jpg'
-import revisitingSunnydaleLogo from '../assets/img/revisiting-sunnydale-big.jpg'
-import eineStundeHistoryLogo from '../assets/img/eine-stunde-history-big.jpg'
-import arschivUndReschercheLogo from '../assets/img/arschiv-und-rescherche-big.jpg'
-import pfarrersToechterLogo from '../assets/img/pfarrerstoechter_big.jpg'
+import arschivUndReschercheLogo from '../assets/img/arschiv-und-rescherche-big2.jpg'
+import darfsEinBisschenMordLogo from '../assets/img/darfs-ein-bisschen-mord-sein-big2.jpg'
+import eineStundeHistoryLogo from '../assets/img/eine-stunde-history-big2.jpg'
+import mordlustLogo from '../assets/img/mordlust-big2.jpg'
+import pfarrersToechterLogo from '../assets/img/pfarrerstoechter_big2.jpg'
+import revisitingSunnydaleLogo from '../assets/img/revisiting-sunnydale-big2.jpg'
+import verbrechenDerVergangenheitLogo from '../assets/img/verbrechen-der-vergangenheit_big2.jpg'
+import verbrechenVonNebenAnLogo from '../assets/img/verbrechen-von-nebenan-big2.jpg'
+import zeitVerbrechenLogo from '../assets/img/zeit-verbrechen-big2.jpg'
 
 export default function StartPage() {
   const [isSecondPodcasts, setIsSecondPodcasts] = useState(false)
@@ -22,10 +21,18 @@ export default function StartPage() {
           <Link to="/verbrechen-von-nebenan">
             <NavigateTo img={verbrechenVonNebenAnLogo} />
           </Link>
-          <NavigateTo img={mordlustLogo} />
-          <NavigateTo img={zeitVerbrechenLogo} />
-          <NavigateTo img={darfsEinBisschenMordLogo} />
-          <NavigateTo img={verbrechenDerVergangenheitLogo} />
+          <Link to="/mordlust">
+            <NavigateTo img={mordlustLogo} />
+          </Link>
+          <Link to="/zeit-verbrechen">
+            <NavigateTo img={zeitVerbrechenLogo} />
+          </Link>
+          <Link to="/darfs-ein-bisserl-mord-sein">
+            <NavigateTo img={darfsEinBisschenMordLogo} />
+          </Link>
+          <Link to="/verbrechen_der_vergangenheit">
+            <NavigateTo img={verbrechenDerVergangenheitLogo} />
+          </Link>
         </Podcasts>
       </Switch>
     )
@@ -33,12 +40,22 @@ export default function StartPage() {
 
   const showOther = () => {
     return (
-      <Podcasts>
-        <NavigateTo img={revisitingSunnydaleLogo} />
-        <NavigateTo img={eineStundeHistoryLogo} />
-        <NavigateTo img={arschivUndReschercheLogo} />
-        <NavigateTo img={pfarrersToechterLogo} />
-      </Podcasts>
+      <Switch>
+        <Podcasts>
+          <Link>
+            <NavigateTo img={revisitingSunnydaleLogo} />
+          </Link>
+          <Link>
+            <NavigateTo img={eineStundeHistoryLogo} />
+          </Link>
+          <Link>
+            <NavigateTo img={arschivUndReschercheLogo} />
+          </Link>
+          <Link>
+            <NavigateTo img={pfarrersToechterLogo} />
+          </Link>
+        </Podcasts>
+      </Switch>
     )
   }
 
@@ -116,8 +133,8 @@ const NavigateTo = styled.button`
   border: 0;
   padding: 0;
   margin: 25px 25px 25px 25px;
-  height: 220px;
-  width: 220px;
+  height: 280px;
+  width: 280px;
   flex: 0 0 auto;
   box-shadow: 0 0 20px black;
   cursor: pointer;
