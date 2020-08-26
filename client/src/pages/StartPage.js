@@ -138,18 +138,3 @@ const NavigateTo = styled.button`
   background-repeat: no-repeat;
   background-size: cover;
 `
-const Podcast = styled.img`
-  width: 140px;
-  border-radius: 15px;
-  padding: 0;
-  border: 0;
-`
-const Collect = styled.section`
-  justify-self: center;
-  align-self: center;
-`
-
-const Collector = styled(Switcher)`
-  width: auto;
-  margin: 0;
-`

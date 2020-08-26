@@ -1,11 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { Switch, Link } from 'react-router-dom'
+import darfsEinBisschenMordLogo from '../assets/img/darfs-ein-bisschen-mord-sein-sm.jpg'
 import mordlustLogo from '../assets/img/mordlust-sm.jpg'
+import verbrechenDerVergangenheitLogo from '../assets/img/verbrechen-der-vergangenheit_sm.jpg'
 import verbrechenVonNebenAnLogo from '../assets/img/verbrechen-von-nebenan-sm.jpg'
 import zeitVerbrechenLogo from '../assets/img/zeit-verbrechen-sm.jpg'
-import darfsEinBisschenMordLogo from '../assets/img/darfs-ein-bisschen-mord-sein-sm.jpg'
-import verbrechenDerVergangenheitLogo from '../assets/img/verbrechen-der-vergangenheit_sm.jpg'
 
 export default function SubNav() {
   return (

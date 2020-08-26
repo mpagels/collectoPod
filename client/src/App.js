@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import StartPage from './pages/StartPage'
+import React, { useEffect } from 'react'
+import { Route, Switch } from 'react-router-dom'
 import PodCast from './pages/Podcast'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import StartPage from './pages/StartPage'
 
 function App() {
-  const [podcasts, setPodcasts] = useState(false)
   useEffect(() => {
     fetch(`http://${window.location.hostname}:4000`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data)
-        setPodcasts(data)
         localStorage.setItem('podcasts', JSON.stringify(data))
         console.log('localStorage done')
       })
