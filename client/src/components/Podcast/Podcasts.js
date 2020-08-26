@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 
 export default function Podcasts({
-  key,
+  id,
   nr,
   subtitle,
   description,
@@ -17,7 +17,7 @@ export default function Podcasts({
   }
   return (
     <>
-      <Card key={key} isOpen={isOpen}>
+      <Card key={id} isOpen={isOpen}>
         <Overview>
           <EpisodeNr>{nr}</EpisodeNr>
           <EpisodeInfos>
