@@ -7,24 +7,29 @@ import SubNav from '../components/SubNav'
 import TopicChanger from '../components/TopicChanger'
 
 export default function Podcast({ title, podcastName, podcastGenre }) {
-  const podcasts = JSON.parse(localStorage.getItem('podcasts'))
-  const find = podcasts[0][podcastGenre].filter((podcastObj) =>
-    Object.keys(podcastObj).includes(podcastName)
-  )
-  const podcast = find[0][podcastName].map((podcast, index) => {
-    return (
-      <Podcasts
-        key={index}
-        id={podcast.id}
-        nr={podcast.nr}
-        publish={podcast.publish}
-        duration={podcast.duration}
-        description={podcast.description}
-        subtitle={podcast.subtitle}
-        url={podcast.url}
-      />
+  let podcast = 'Still fetching...'
+  try {
+    const podcasts = JSON.parse(localStorage.getItem('podcasts'))
+    const find = podcasts[0][podcastGenre].filter((podcastObj) =>
+      Object.keys(podcastObj).includes(podcastName)
     )
-  })
+    podcast = find[0][podcastName].map((podcast, index) => {
+      return (
+        <Podcasts
+          key={index}
+          id={podcast.id}
+          nr={podcast.nr}
+          publish={podcast.publish}
+          duration={podcast.duration}
+          description={podcast.description}
+          subtitle={podcast.subtitle}
+          url={podcast.url}
+        />
+      )
+    })
+  } catch (error) {
+    podcast = 'Still fetching...Try the NavBar at bottom!'
+  }
 
   return (
     <Screen>
@@ -67,6 +72,7 @@ const Headline = styled.header`
 `
 const PodcastContent = styled.main`
   overflow: auto;
+  text-align: center;
 `
 const Navigation = styled.section`
   display: grid;
