@@ -63,16 +63,13 @@ export default function StartPage() {
     <Screen>
       <Header>
         <AppTitle>collectoPod</AppTitle>
-        <AppSubTitle>have your favorite podcasts in one place</AppSubTitle>
+        <AppSubTitle>Your favorite podcasts in one place</AppSubTitle>
       </Header>
       <PodcastSwitcher>
         <Switcher onClick={() => setIsSecondPodcasts(false)}>Crime</Switcher>
         <Switcher onClick={() => setIsSecondPodcasts(true)}>Other</Switcher>
       </PodcastSwitcher>
       {isSecondPodcasts ? showOther() : showCrime()}
-      <Collect>
-        <Collector>Collect all data again</Collector>
-      </Collect>
     </Screen>
   )
 }
