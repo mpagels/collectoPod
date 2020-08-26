@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
+import { ReactComponent as ArrowBack } from '../assets/svg/forward-white-24dp.svg'
 import Podcasts from '../components/Podcast/Podcasts'
 import SubNav from '../components/SubNav'
 import TopicChanger from '../components/TopicChanger'
-import { ReactComponent as ArrowBack } from '../assets/svg/forward-white-24dp.svg'
-import { Link } from 'react-router-dom'
 
 export default function Podcast({ title, podcastName, podcastGenre }) {
   const podcasts = JSON.parse(localStorage.getItem('podcasts'))
   const find = podcasts[0][podcastGenre].filter((podcastObj) =>
     Object.keys(podcastObj).includes(podcastName)
   )
-  const podcast = find[0][podcastName].map((podcast) => {
+  const podcast = find[0][podcastName].map((podcast, index) => {
     return (
       <Podcasts
-        key={podcast.id}
+        key={index}
+        id={podcast.id}
         nr={podcast.nr}
         publish={podcast.publish}
         duration={podcast.duration}
