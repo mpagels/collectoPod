@@ -42,16 +42,16 @@ export default function StartPage() {
     return (
       <Switch>
         <Podcasts>
-          <Link>
+          <Link to="/revisiting_sunnydale">
             <NavigateTo img={revisitingSunnydaleLogo} />
           </Link>
           <Link>
             <NavigateTo img={eineStundeHistoryLogo} />
           </Link>
-          <Link>
+          <Link to="rescherschen_und_arschiv">
             <NavigateTo img={arschivUndReschercheLogo} />
           </Link>
-          <Link>
+          <Link to="zeit_pfarrerstoechter">
             <NavigateTo img={pfarrersToechterLogo} />
           </Link>
         </Podcasts>
@@ -66,8 +66,8 @@ export default function StartPage() {
         <AppSubTitle>Your favorite podcasts in one place</AppSubTitle>
       </Header>
       <PodcastSwitcher>
-        <Switcher onClick={() => setIsSecondPodcasts(false)}>Crime</Switcher>
-        <Switcher onClick={() => setIsSecondPodcasts(true)}>Other</Switcher>
+        <Switcher onClick={() => setIsSecondPodcasts(false)}>crime</Switcher>
+        <Switcher onClick={() => setIsSecondPodcasts(true)}>other</Switcher>
       </PodcastSwitcher>
       {isSecondPodcasts ? showOther() : showCrime()}
     </Screen>

@@ -47,6 +47,27 @@ function App() {
           podcastGenre="crime"
         />
       </Route>
+      <Route path="/revisiting_sunnydale">
+        <PodCast
+          title="Revisiting Sunnydale"
+          podcastName="revisiting_sunnydale"
+          podcastGenre="other"
+        />
+      </Route>
+      <Route path="/rescherschen_und_arschiv">
+        <PodCast
+          title="Rescherchen und Arschiv"
+          podcastName="rescherschen_und_arschiv"
+          podcastGenre="other"
+        />
+      </Route>
+      <Route path="/zeit_pfarrerstoechter">
+        <PodCast
+          title="Unter Pfarrerstöchtern"
+          podcastName="zeit_pfarrerstoechter"
+          podcastGenre="other"
+        />
+      </Route>
       <Route path="/">
         <StartPage />
       </Route>
