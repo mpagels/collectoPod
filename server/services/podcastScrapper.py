@@ -1,4 +1,3 @@
-
 import requests
 import datetime
 import json
@@ -13,11 +12,12 @@ def get_podcast_infos():
         {"mordlust" : "https://rss.nexx.cloud/F0RCEXPNYW8MKX8"},
         {"zeit_verbrechen":"https://verbrechen.podigee.io/feed/mp3"},
         {"darfs_ein_bisschen_mord_sein" : "https://cdn.stationista.com/feeds/darfs-ein-bisserl-mord-sein"},
-        {"verbrechen_der_vergangenheit" : "https://rss.art19.com/verbrechen"}]}]
-        # {"other" : [{
-        # "revisiting_sunnydale" : "https://revisitingsunnydale.libsyn.com/rss"},
-        # {"zeit_pfarrerstoechter" : "https://unterpfarrerstoechtern.podigee.io/feed/mp3"},
-        # {"rescherschen_und_arschiv" : "https://rescherschen-und-arschiv.podigee.io/feed/aac"},
+        {"verbrechen_der_vergangenheit" : "https://rss.art19.com/verbrechen"}],
+        "other" : [{
+        "revisiting_sunnydale" : "https://revisitingsunnydale.libsyn.com/rss"},
+        {"zeit_pfarrerstoechter" : "https://unterpfarrerstoechtern.podigee.io/feed/mp3"},
+        {"rescherschen_und_arschiv" : "https://rescherschen-und-arschiv.podigee.io/feed/aac"}]
+        }]
         # {"eine_stunde_history": "http://www.deutschlandfunknova.de/podcast/eine-stunde-history"}]
     #}]
 
@@ -73,7 +73,9 @@ def get_podcast_infos():
                                 elif node.tag == "{http://www.itunes.com/dtds/podcast-1.0.dtd}duration":
                                     folge["duration"] = node.text
 
-                        elif podcast_name == "darfs_ein_bisschen_mord_sein" or podcast_name == "verbrechen_der_vergangenheit":
+                        elif (podcast_name == "darfs_ein_bisschen_mord_sein"
+                         or podcast_name == "verbrechen_der_vergangenheit"
+                         or podcast_name == "rescherschen_und_arschiv"):
                             for node in item:
                                 if node.tag == "title":
                                     folge["subtitle"] = node.text
@@ -86,7 +88,21 @@ def get_podcast_infos():
                                 elif node.tag == "pubDate":
                                     folge["publish"] = node.text[:16]
                                 elif node.tag == "{http://www.itunes.com/dtds/podcast-1.0.dtd}duration":
-                                    folge["duration"] = node.text        
+                                    folge["duration"] = node.text
+
+                        elif podcast_name == "revisiting_sunnydale" :
+                            for node in item:
+                                if node.tag == "title":
+                                    folge["nr"] = "#" + node.text.split(":").split(" ")[0]
+                                    folge["subtitle"] = node.text.split(":")[1]
+                                elif node.tag == "{http://www.itunes.com/dtds/podcast-1.0.dtd}subtitle":
+                                    folge["description"] = node.text
+                                elif node.tag == "enclosure":
+                                    folge["url"] = node.attrib["url"]
+                                elif node.tag == "pubDate":
+                                    folge["publish"] = node.text[:16]
+                                elif node.tag == "{http://www.itunes.com/dtds/podcast-1.0.dtd}duration":
+                                    folge["duration"] = node.text
                         else:
                             for node in item:
                                 if node.tag == "title":
