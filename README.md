@@ -22,8 +22,8 @@ So collectoPod scraps rss feeds from my girlfriend's favorite podcasts and makes
 - check if you have installed python3 on your machine
 - to do that, open your terminal or console and type `python3 --version` you should have at least python 3.7.3
 - of not update or [install python on your machine](https://www.python.org/downloads/)
-- install two python dependencies (requests and beautifulsoup):
-- to do that, open your terminal or console and type `pip3 install requests`and after the installation is done type `pip3 install beautifulsoup4`
+- install one python dependencies (requests):
+- to do that, open your terminal or console and type `pip3 install requests`
 
 ## Available Scripts
 
