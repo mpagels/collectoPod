@@ -41,8 +41,10 @@ export default function Podcast({ title, podcastName, podcastGenre }) {
       </Headline>
       <PodcastContent>{podcast}</PodcastContent>
       <Navigation>
-        <TopicChange>{<TopicChanger />}</TopicChange>
-        <PodCastChange>{<SubNav />}</PodCastChange>
+        <TopicChange>
+          {<TopicChanger currentTopic={podcastGenre} />}
+        </TopicChange>
+        <PodCastChange>{<SubNav currentTopic={podcastGenre} />}</PodCastChange>
       </Navigation>
     </Screen>
   )
