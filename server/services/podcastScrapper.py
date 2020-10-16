@@ -39,7 +39,7 @@ def get_podcast_infos():
                     r = requests.get(URL)
                     root = ET.fromstring(r.text)
 
-                    in_channel = root[0].getchildren()
+                    in_channel = list(root[0])
                     all_items = []
                     for item in in_channel:
                         if item.tag == "item":
