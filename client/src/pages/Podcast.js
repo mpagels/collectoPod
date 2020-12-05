@@ -6,14 +6,14 @@ import Podcasts from '../components/Podcast/Podcasts'
 import SubNav from '../components/SubNav'
 import TopicChanger from '../components/TopicChanger'
 
-export default function Podcast({ title, podcastName, podcastGenre }) {
+export default function Podcast({ title, podcastName, podcastGenre, data }) {
   let podcast = 'Still fetching...'
   try {
-    const podcasts = JSON.parse(localStorage.getItem('podcasts'))
-    const find = podcasts[0][podcastGenre].filter((podcastObj) =>
-      Object.keys(podcastObj).includes(podcastName)
-    )
-    podcast = find[0][podcastName].map((podcast, index) => {
+    // const podcasts = JSON.parse(localStorage.getItem('podcasts'))
+    // const find = podcasts[0][podcastGenre].filter((podcastObj) =>
+    //   Object.keys(podcastObj).includes(podcastName)
+    // )
+    podcast = data.map((podcast, index) => {
       return (
         <Podcasts
           key={index}

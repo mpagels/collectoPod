@@ -1,16 +1,16 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import PodCast from './pages/Podcast'
 import StartPage from './pages/StartPage'
 
 function App() {
+  const [podcast, setPodcast] = useState([])
+
   useEffect(() => {
     fetch(`http://${window.location.hostname}:4000`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data)
-        localStorage.setItem('podcasts', JSON.stringify(data))
-        console.log('localStorage done')
+        setPodcast(data)
       })
   }, [])
 
@@ -21,6 +21,7 @@ function App() {
           title="Verbrechen von nebenan"
           podcastName="verbrechen"
           podcastGenre="crime"
+          data={podcast}
         />
       </Route>
       <Route path="/mordlust">
