@@ -6,6 +6,7 @@ import Podcasts from '../components/Podcast/Podcasts'
 import SubNav from '../components/SubNav'
 import TopicChanger from '../components/TopicChanger'
 
+
 export default function Podcast({
   title,
   podcastName,
@@ -24,6 +25,7 @@ export default function Podcast({
     localStorage.setItem('lastVisited', JSON.stringify(obj))
     setLastVisit(obj)
   }, [podcastName])
+
   let podcast = 'Still fetching...'
   try {
     // const podcasts = JSON.parse(localStorage.getItem('podcasts'))

@@ -12,6 +12,7 @@ async function run(res) {
   const client = new MongoClient(uri, { useUnifiedTopology: true })
   try {
     await client.connect()
+
     const database = client.db('podcasts')
     let collection = database.collection('verbrechen-von-nebenan')
     const verbrechen = await collection.find()
@@ -46,6 +47,7 @@ async function run(res) {
       await rescherschen_und_arschiv.toArray(),
       await eine_stunde_history.toArray(),
     ])
+
   } finally {
     // Ensures that the client will close when you finish/error
     await client.close()

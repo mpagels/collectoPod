@@ -1,9 +1,11 @@
+
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import PodCast from './pages/Podcast'
 import StartPage from './pages/StartPage'
 import usePodcasts from './hooks/usePodcasts'
 function App() {
+
   const {
     verbrechen,
     lastUpdated,
@@ -21,6 +23,7 @@ function App() {
 
   const lastUpdates = lastUpdated.map((last) => new Date(last.lastUpdated))
 
+
   console.log(lastUpdates)
   return (
     <Switch>
@@ -33,6 +36,7 @@ function App() {
           lastVisit={lastVisit}
           setLastVisit={setLastVisit}
           lastUpdates={lastUpdates}
+
         />
       </Route>
       <Route path="/mordlust">
