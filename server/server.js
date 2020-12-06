@@ -5,7 +5,14 @@ import path from 'path'
 const server = express()
 const __dirname = path.resolve()
 import MongoClient from 'mongodb'
-const uri = 'mongodb://localhost:27017'
+import dotenv from 'dotenv'
+dotenv.config()
+
+const dataBase = process.env.DATABASE
+const passWord = process.env.PASSWORD
+const clusterURL = process.env.CLUSTER
+
+const uri = `mongodb+srv://${dataBase}:${passWord}@${clusterURL}/podcasts?retryWrites=true&w=majority`
 
 server.use(cors())
 
@@ -17,7 +24,9 @@ server.get('/', function (req, res) {
 server.get('/api', (req, res) => {
   run(res)
 })
-server.listen(400, () => console.log('Server started on http://localhost:7531'))
+server.listen(7532, () =>
+  console.log('Server started on http://localhost:7532')
+)
 
 async function run(res) {
   const client = new MongoClient.MongoClient(uri, { useUnifiedTopology: true })

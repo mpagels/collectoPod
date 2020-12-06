@@ -59,7 +59,7 @@ export default function usePodcasts() {
     )
   )
   useEffect(() => {
-    fetch(`http://${window.location.hostname}:7531/api`)
+    fetch(`http://${window.location.hostname}:7532/api`)
       .then((res) => res.json())
       .then((data) => {
         setVerbrechen(data[1])
