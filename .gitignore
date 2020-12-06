@@ -26,3 +26,4 @@ yarn-error.log*
 
 # python env
 /scrapper/scrapper
+/scrapper/__pycache__
