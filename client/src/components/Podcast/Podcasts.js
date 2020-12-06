@@ -28,7 +28,9 @@ export default function Podcasts({
             </div>
           </EpisodeInfos>
         </Overview>
-        {isOpen && <Description>{description}</Description>}
+        {isOpen && (
+          <Description dangerouslySetInnerHTML={{ __html: description }} />
+        )}
         <ReadMore onClick={() => handleClick()}>
           {' '}
           {isOpen ? 'CLOSE' : 'READ MORE...'}

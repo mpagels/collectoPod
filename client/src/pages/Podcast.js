@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import { ReactComponent as ArrowBack } from '../assets/svg/forward-white-24dp.svg'
@@ -6,7 +6,24 @@ import Podcasts from '../components/Podcast/Podcasts'
 import SubNav from '../components/SubNav'
 import TopicChanger from '../components/TopicChanger'
 
-export default function Podcast({ title, podcastName, podcastGenre, data }) {
+export default function Podcast({
+  title,
+  podcastName,
+  podcastGenre,
+  data,
+  lastVisit,
+  lastUpdates,
+  setLastVisit,
+}) {
+  useEffect(() => {
+    const obj = { ...lastVisit }
+    obj[podcastName] = {
+      lastVisited: Date.now(),
+    }
+
+    localStorage.setItem('lastVisited', JSON.stringify(obj))
+    setLastVisit(obj)
+  }, [podcastName])
   let podcast = 'Still fetching...'
   try {
     // const podcasts = JSON.parse(localStorage.getItem('podcasts'))
@@ -44,7 +61,15 @@ export default function Podcast({ title, podcastName, podcastGenre, data }) {
         <TopicChange>
           {<TopicChanger currentTopic={podcastGenre} />}
         </TopicChange>
-        <PodCastChange>{<SubNav currentTopic={podcastGenre} />}</PodCastChange>
+        <PodCastChange>
+          {
+            <SubNav
+              currentTopic={podcastGenre}
+              lastUpdates={lastUpdates}
+              lastVisit={lastVisit}
+            />
+          }
+        </PodCastChange>
       </Navigation>
     </Screen>
   )
