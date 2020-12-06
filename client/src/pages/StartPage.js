@@ -11,7 +11,7 @@ import verbrechenDerVergangenheitLogo from '../assets/img/verbrechen-der-vergang
 import verbrechenVonNebenAnLogo from '../assets/img/verbrechen-von-nebenan-big2.jpg'
 import zeitVerbrechenLogo from '../assets/img/zeit-verbrechen-big2.jpg'
 
-export default function StartPage() {
+export default function StartPage({ lastUpdates, lastVisit }) {
   const [isSecondPodcasts, setIsSecondPodcasts] = useState(false)
 
   const showCrime = () => {
@@ -19,19 +19,46 @@ export default function StartPage() {
       <Switch>
         <Podcasts>
           <Link to="/verbrechen-von-nebenan">
-            <NavigateTo img={verbrechenVonNebenAnLogo} />
+            <NavigateTo img={verbrechenVonNebenAnLogo}>
+              {lastUpdates.length > 0 &&
+                lastUpdates[0].valueOf() >
+                  lastVisit?.verbrechen?.lastVisited && <New>NEUER INHALT</New>}
+            </NavigateTo>
           </Link>
           <Link to="/mordlust">
-            <NavigateTo img={mordlustLogo} />
+            <NavigateTo img={mordlustLogo}>
+              {lastUpdates.length > 0 &&
+                lastUpdates[1].valueOf() > lastVisit?.mordlust?.lastVisited && (
+                  <New>NEUER INHALT</New>
+                )}
+            </NavigateTo>
           </Link>
           <Link to="/zeit-verbrechen">
-            <NavigateTo img={zeitVerbrechenLogo} />
+            <NavigateTo img={zeitVerbrechenLogo}>
+              {lastUpdates.length > 0 &&
+                lastUpdates[2].valueOf() >
+                  lastVisit?.zeit_verbrechen?.lastVisited && (
+                  <New>NEUER INHALT</New>
+                )}
+            </NavigateTo>
           </Link>
           <Link to="/darfs-ein-bisserl-mord-sein">
-            <NavigateTo img={darfsEinBisschenMordLogo} />
+            <NavigateTo img={darfsEinBisschenMordLogo}>
+              {lastUpdates.length > 0 &&
+                lastUpdates[3].valueOf() >
+                  lastVisit?.darfs_ein_bisschen_mord_sein?.lastVisited && (
+                  <New>NEUER INHALT</New>
+                )}
+            </NavigateTo>
           </Link>
           <Link to="/verbrechen_der_vergangenheit">
-            <NavigateTo img={verbrechenDerVergangenheitLogo} />
+            <NavigateTo img={verbrechenDerVergangenheitLogo}>
+              {lastUpdates.length > 0 &&
+                lastUpdates[4].valueOf() >
+                  lastVisit?.verbrechen_der_vergangenheit?.lastVisited && (
+                  <New>NEUER INHALT</New>
+                )}
+            </NavigateTo>
           </Link>
         </Podcasts>
       </Switch>
@@ -43,16 +70,40 @@ export default function StartPage() {
       <Switch>
         <Podcasts>
           <Link to="/revisiting_sunnydale">
-            <NavigateTo img={revisitingSunnydaleLogo} />
+            <NavigateTo img={revisitingSunnydaleLogo}>
+              {lastUpdates.length > 0 &&
+                lastUpdates[5].valueOf() >
+                  lastVisit?.revisiting_sunnydale?.lastVisited && (
+                  <New>NEUER INHALT</New>
+                )}
+            </NavigateTo>
           </Link>
-          <Link>
-            <NavigateTo img={eineStundeHistoryLogo} />
+          <Link to="/eineStundeHistory">
+            <NavigateTo img={eineStundeHistoryLogo}>
+              {lastUpdates.length > 0 &&
+                lastUpdates[8].valueOf() >
+                  lastVisit?.eineStundeHistory?.lastVisited && (
+                  <New>NEUER INHALT</New>
+                )}
+            </NavigateTo>
           </Link>
           <Link to="rescherschen_und_arschiv">
-            <NavigateTo img={arschivUndReschercheLogo} />
+            <NavigateTo img={arschivUndReschercheLogo}>
+              {lastUpdates.length > 0 &&
+                lastUpdates[7].valueOf() >
+                  lastVisit?.rescherschen_und_arschiv?.lastVisited && (
+                  <New>NEUER INHALT</New>
+                )}
+            </NavigateTo>
           </Link>
           <Link to="zeit_pfarrerstoechter">
-            <NavigateTo img={pfarrersToechterLogo} />
+            <NavigateTo img={pfarrersToechterLogo}>
+              {lastUpdates.length > 0 &&
+                lastUpdates[6].valueOf() >
+                  lastVisit?.zeit_pfarrerstoechter?.lastVisited && (
+                  <New>NEUER INHALT</New>
+                )}
+            </NavigateTo>
           </Link>
         </Podcasts>
       </Switch>
@@ -137,4 +188,21 @@ const NavigateTo = styled.button`
   background: url(${(props) => props.img});
   background-repeat: no-repeat;
   background-size: cover;
+  position: relative;
+`
+
+const New = styled.div`
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 20px;
+  left: 0;
+  background-color: red;
+  width: 150px;
+  height: 30px;
+  color: white;
+  font-size: 1.2em;
+  font-weight: 500;
+  border-radius: 0 5px 5px 0;
 `
