@@ -9,17 +9,15 @@ const uri = 'mongodb://localhost:27017'
 
 server.use(cors())
 
-server.use(express.static(path.join(__dirname, 'build')))
+server.use(express.static(path.join('..', 'client', 'build')))
 
 server.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'))
+  res.sendFile(path.join('..', 'client', 'build', 'index.html'))
 })
 server.get('/api', (req, res) => {
   run(res)
 })
-server.listen(4000, () =>
-  console.log('Server started on http://localhost:4000')
-)
+server.listen(400, () => console.log('Server started on http://localhost:7531'))
 
 async function run(res) {
   const client = new MongoClient.MongoClient(uri, { useUnifiedTopology: true })
