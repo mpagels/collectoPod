@@ -1,28 +1,10 @@
 import express from 'express'
-import router from './routes/api.js'
-import cors from 'cors'
-import path from 'path'
-const server = express()
-const __dirname = path.resolve()
 import MongoClient from 'mongodb'
+const router = express.Router()
 const uri = 'mongodb://localhost:27017'
 
-server.use(cors())
-
-server.use(express.static(path.join(__dirname, 'build')))
-
-server.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'))
-})
-server.get('/api', (req, res) => {
-  run(res)
-})
-server.listen(4000, () =>
-  console.log('Server started on http://localhost:4000')
-)
-
 async function run(res) {
-  const client = new MongoClient.MongoClient(uri, { useUnifiedTopology: true })
+  const client = new MongoClient(uri, { useUnifiedTopology: true })
   try {
     await client.connect()
 
@@ -65,3 +47,9 @@ async function run(res) {
     await client.close()
   }
 }
+
+router.get('/api', (req, res) => {
+  run(res)
+})
+
+export default router
