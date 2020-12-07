@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import { ReactComponent as ArrowBack } from '../assets/svg/forward-white-24dp.svg'
 import Podcasts from '../components/Podcast/Podcasts'
-import SubNav from '../components/SubNav'
+import SubNav from '../components/SubNav/SubNav'
 import TopicChanger from '../components/TopicChanger'
 
 export default function Podcast({
@@ -28,10 +28,6 @@ export default function Podcast({
 
   let podcast = 'Still fetching...'
   try {
-    // const podcasts = JSON.parse(localStorage.getItem('podcasts'))
-    // const find = podcasts[0][podcastGenre].filter((podcastObj) =>
-    //   Object.keys(podcastObj).includes(podcastName)
-    // )
     podcast = data.map((podcast, index) => {
       return (
         <Podcasts
@@ -64,13 +60,11 @@ export default function Podcast({
           <TopicChanger currentTopic={podcastGenre} />
         </TopicChange>
         <PodCastChange>
-          {
-            <SubNav
-              currentTopic={podcastGenre}
-              lastUpdates={lastUpdates}
-              lastVisit={lastVisit}
-            />
-          }
+          <SubNav
+            currentTopic={podcastGenre}
+            lastUpdates={lastUpdates}
+            lastVisit={lastVisit}
+          />
         </PodCastChange>
       </Navigation>
     </Screen>
