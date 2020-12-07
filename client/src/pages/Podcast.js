@@ -6,7 +6,6 @@ import Podcasts from '../components/Podcast/Podcasts'
 import SubNav from '../components/SubNav'
 import TopicChanger from '../components/TopicChanger'
 
-
 export default function Podcast({
   title,
   podcastName,
@@ -24,6 +23,7 @@ export default function Podcast({
 
     localStorage.setItem('lastVisited', JSON.stringify(obj))
     setLastVisit(obj)
+    // eslint-disable-next-line
   }, [podcastName])
 
   let podcast = 'Still fetching...'
@@ -61,7 +61,7 @@ export default function Podcast({
       <PodcastContent>{podcast}</PodcastContent>
       <Navigation>
         <TopicChange>
-          {<TopicChanger currentTopic={podcastGenre} />}
+          <TopicChanger currentTopic={podcastGenre} />
         </TopicChange>
         <PodCastChange>
           {
@@ -87,9 +87,14 @@ const Title = styled.h2`
 `
 const Screen = styled.main`
   display: grid;
-  grid-template-rows: 10% 80% 10%;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 1fr;
   height: 100vh;
   width: 100%;
+  grid-template-areas:
+    'header'
+    'main'
+    'footer';
 `
 const Headline = styled.header`
   font-family: 'Do Hyeon', sans-serif;
@@ -98,15 +103,19 @@ const Headline = styled.header`
   padding: 15px;
   display: grid;
   grid-template-columns: 20% 80%;
+  grid-area: header;
 `
 const PodcastContent = styled.main`
   overflow: auto;
   text-align: center;
+  grid-area: main;
 `
 const Navigation = styled.section`
   display: grid;
   grid-template-columns: 20% 80%;
   background-color: transparent;
+  grid-area: footer;
+  padding: 10px 0;
 `
 const TopicChange = styled.div`
   display: flex;

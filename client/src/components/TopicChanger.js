@@ -29,4 +29,5 @@ const Button = styled.button`
   font-size: 24px;
   font-family: 'Do Hyeon', sans-serif;
   box-shadow: 0 0 5px black;
+  outline: none;
 `

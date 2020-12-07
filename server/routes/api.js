@@ -1,35 +1,10 @@
 import express from 'express'
-import router from './routes/api.js'
-import cors from 'cors'
-import path from 'path'
-const server = express()
-const __dirname = path.resolve()
 import MongoClient from 'mongodb'
-import dotenv from 'dotenv'
-dotenv.config()
-
-const dataBase = process.env.DATABASE
-const passWord = process.env.PASSWORD
-const clusterURL = process.env.CLUSTER
-
-const uri = `mongodb+srv://${dataBase}:${passWord}@${clusterURL}/podcasts?retryWrites=true&w=majority`
-
-server.use(cors())
-
-server.use(express.static(path.join('..', 'client', 'build')))
-
-server.get('/', function (req, res) {
-  res.sendFile(path.join('..', 'client', 'build', 'index.html'))
-})
-server.get('/api', (req, res) => {
-  run(res)
-})
-server.listen(7532, () =>
-  console.log('Server started on http://localhost:7532')
-)
+const router = express.Router()
+const uri = 'mongodb://localhost:27017'
 
 async function run(res) {
-  const client = new MongoClient.MongoClient(uri, { useUnifiedTopology: true })
+  const client = new MongoClient(uri, { useUnifiedTopology: true })
   try {
     await client.connect()
 
@@ -72,3 +47,9 @@ async function run(res) {
     await client.close()
   }
 }
+
+router.get('/api', (req, res) => {
+  run(res)
+})
+
+export default router
