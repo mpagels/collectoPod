@@ -99,6 +99,7 @@ const NavLogos = styled.img`
   border-radius: 10px;
   cursor: pointer;
   box-shadow: 0 0 5px black;
+  outline: none;
 `
 const StyledLink = styled(Link)`
   display: flex;
