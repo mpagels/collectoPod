@@ -4,10 +4,14 @@ verbrechen_der_vergangenheit, revisiting_sunnydale,
 zeit_pfarrerstoechter, rescherschen_und_arschiv, spezialgelagerter_sonderpodcast,
 eine_stunde_history, ndr_corona_update)
 
+import logging
+import telegram
 import os
 from pymongo import MongoClient
 from dotenv import load_dotenv
+
 load_dotenv()
+logging.basicConfig(filename='scrapper.log',level=logging.INFO, format="%(levelname)s:%(asctime)s:%(message)s")
 
 DATABASE=os.getenv("DATABASE")
 PASSWORD=os.getenv("PASSWORD")
@@ -28,29 +32,69 @@ PODCASTS = [
     ["ndr-corona-update", ndr_corona_update, "https://www.ndr.de/nachrichten/info/podcast4684.xml"],
     ]
 
+
+
 def insert_in_databank(collection_name, podcasts_to_insert):
-    client = MongoClient(URI)
-    db = client[DATABASE_NAME]
-    podcast_collection = db[collection_name]
-    last_updated_collection = db["lastUpdated"]
-    current_milli_time = lambda: int(round(time.time() * 1000))
-    insert = 0
-    for podcast in podcasts_to_insert:
-        if podcast_collection.find_one({"id" : podcast["id"]}) == None:
-            podcast_collection.insert_one(podcast)
-            last_updated_collection.update_one({"podcast": collection_name}, [{"$set": {"lastUpdated": "$$NOW"}}])
-            insert += 1
+    try:
+        client = MongoClient(URI)
+    except Exception as e:
+        set_is_exception()
+        logging.error(f"Databank connection for {collection_name} went wrong. Error: {e}")
+        
+    else:
+        db = client[DATABASE_NAME]
+        podcast_collection = db[collection_name]
+        last_updated_collection = db["lastUpdated"]
+        current_milli_time = lambda: int(round(time.time() * 1000))
+        insert = 0
+        for podcast in podcasts_to_insert:
+            if podcast_collection.find_one({"id" : podcast["id"]}) == None:
+                try:
+                    podcast_collection.insert_one(podcast)
+                    last_updated_collection.update_one({"podcast": collection_name}, [{"$set": {"lastUpdated": "$$NOW"}}])
+                    insert += 1
+                except Exception as e:
+                    set_is_exception()
+                    logging.error(f"Error while inserting into {collection_name} databank. Error: {e}")
+                    
 
-    print(f"done inserting {collection_name} with {insert} inserts!")
+        logging.info(f"done inserting {collection_name} with {insert} inserts!")
 
+def send_message_when_exception():
+    if is_exception == True:
+        TELEGRAM_TOKEN=os.getenv("TELEGRAM_TOKEN")
+        CHAT_ID=os.getenv("CHAT_ID")
+        URL=os.getenv("URL")
+        bot = telegram.Bot(token=TELEGRAM_TOKEN)
+        bot.send_message(chat_id=CHAT_ID, text=f'''There was an error while scrapping. Visit 
+{URL}
+for details.''')
 
+logging.info("-------START SCRAPPER-------")
+
+def set_is_exception():
+    global is_exception
+    is_exception = True
+
+is_exception = False
 for index, podcasts in enumerate(PODCASTS):
 
     db_name = PODCASTS[index][0]
     scrapp_function = PODCASTS[index][1]
     url_to_scrapp = PODCASTS[index][2]
 
-    all_items_from_xml = get_xml_from(url_to_scrapp)
-    all_podcasts_from_items = scrapp_function(all_items_from_xml)
+    try:
+        all_items_from_xml = get_xml_from(url_to_scrapp)
+    except Exception as e:
+        set_is_exception()
+        logging.error(f"An error occured for get request {db_name}. Error message: {e}")
+    else:
+        try:
+            all_podcasts_from_items = scrapp_function(all_items_from_xml)
+        except Exception as e:
+            set_is_exception()
+            logging.error(f"An error occured while scrapping {db_name}. Error message: {e}")
+        else:
+            insert_in_databank(db_name, all_podcasts_from_items)
 
-    insert_in_databank(db_name, all_podcasts_from_items)
+if is_exception: send_message_when_exception()

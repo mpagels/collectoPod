@@ -18,12 +18,18 @@ server.use(cors())
 
 server.use(express.static(path.join('..', 'client', 'build')))
 
-server.get('/', function (req, res) {
+/* server.get('/', function (req, res) {
   res.sendFile(path.join('..', 'client', 'build', 'index.html'))
-})
+}) */
+
 server.get('/api', (req, res) => {
   run(res)
 })
+
+server.get('/api/logger', (req, res) => {
+  res.sendFile(path.resolve('../scrapper/scrapper.log'))
+})
+
 server.listen(7532, () =>
   console.log('Server started on http://localhost:7532')
 )
