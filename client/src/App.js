@@ -21,6 +21,8 @@ function App() {
       rescherschenUndArschiv,
       zeitPfarrerstoechter,
       eineStundeHistory,
+      spezialgelagerterSonderpodcast,
+      ndrCoronaUpdate,
     ] = data
 
     const lastUpdates = lastUpdated.map((last) => new Date(last.lastUpdated))
@@ -62,11 +64,18 @@ function App() {
         data: verbrechenDerVergangenheit,
       },
       {
-        path: '/revisiting_sunnydale',
-        title: 'Revisiting Sunnydale',
-        podcastName: 'revisiting_sunnydale',
+        path: '/ndr-corona-update',
+        title: 'Das Coronavirus-Update',
+        podcastName: 'ndr_corona_update',
         podcastGenre: 'other',
-        data: revisitingSunnydale,
+        data: ndrCoronaUpdate,
+      },
+      {
+        path: '/spezialgelagerter-sonderpodcast',
+        title: 'Spezialgelagerter Sonderpodcast',
+        podcastName: 'spezialgelagerter_sonderpodcast',
+        podcastGenre: 'other',
+        data: spezialgelagerterSonderpodcast,
       },
       {
         path: '/rescherschen_und_arschiv',
@@ -75,6 +84,14 @@ function App() {
         podcastGenre: 'other',
         data: rescherschenUndArschiv,
       },
+      {
+        path: '/revisiting_sunnydale',
+        title: 'Revisiting Sunnydale',
+        podcastName: 'revisiting_sunnydale',
+        podcastGenre: 'other',
+        data: revisitingSunnydale,
+      },
+
       {
         path: '/zeit_pfarrerstoechter',
         title: 'Unter Pfarrerstöchtern',

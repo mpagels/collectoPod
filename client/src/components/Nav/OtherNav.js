@@ -5,11 +5,31 @@ import arschivUndReschercheLogo from '../../assets/img/arschiv-und-rescherche-bi
 import eineStundeHistoryLogo from '../../assets/img/eine-stunde-history-big2.jpg'
 import pfarrersToechterLogo from '../../assets/img/pfarrerstoechter_big2.jpg'
 import revisitingSunnydaleLogo from '../../assets/img/revisiting-sunnydale-big2.jpg'
+import coronaPodcastUpdateLogo from '../../assets/img/corona-podcast-update-big2.jpg'
+import spezialgelagerterSonderpodcastLogo from '../../assets/img/spezialgelagerter-sonderpodcast-big2.jpg'
 
 export default function OtherNav({ lastUpdates, lastVisit }) {
   return (
     <Switch>
       <Podcasts>
+        <Link to="/ndr-corona-update">
+          <NavigateTo img={coronaPodcastUpdateLogo}>
+            {lastUpdates.length > 0 &&
+              lastUpdates[10].valueOf() >
+                lastVisit?.ndr_corona_update?.lastVisited && (
+                <New>NEUER INHALT</New>
+              )}
+          </NavigateTo>
+        </Link>
+        <Link to="/spezialgelagerter-sonderpodcast">
+          <NavigateTo img={spezialgelagerterSonderpodcastLogo}>
+            {lastUpdates.length > 0 &&
+              lastUpdates[9].valueOf() >
+                lastVisit?.spezialgelagerter_sonderpodcast?.lastVisited && (
+                <New>NEUER INHALT</New>
+              )}
+          </NavigateTo>
+        </Link>
         <Link to="/revisiting_sunnydale">
           <NavigateTo img={revisitingSunnydaleLogo}>
             {lastUpdates.length > 0 &&

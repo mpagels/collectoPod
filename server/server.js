@@ -52,6 +52,10 @@ async function run(res) {
     const rescherschen_und_arschiv = await collection.find()
     collection = database.collection('eine-stunde-history')
     const eine_stunde_history = await collection.find()
+    collection = database.collection('ndr-corona-update')
+    const ndrCoronaUpdate = await collection.find()
+    collection = database.collection('spezialgelagerter-sonderpodcast')
+    const spezialgelagerterSonderpodcast = await collection.find()
     const collection2 = database.collection('lastUpdated')
     const updateTimes = await collection2.find()
 
@@ -66,6 +70,8 @@ async function run(res) {
       await zeit_pfarrerstoechter.toArray(),
       await rescherschen_und_arschiv.toArray(),
       await eine_stunde_history.toArray(),
+      await spezialgelagerterSonderpodcast.toArray(),
+      await ndrCoronaUpdate.toArray(),
     ])
   } finally {
     // Ensures that the client will close when you finish/error

@@ -205,6 +205,30 @@ def rescherschen_und_arschiv(all_items):
     
     return all_podcasts
 
+def spezialgelagerter_sonderpodcast(all_items):
+    all_podcasts = []
+
+    for item in all_items:
+        folge = {}
+        for node in item:
+            if node.tag == "guid":
+                folge["id"] = node.text
+            if node.tag == "title":
+                folge["title"] = node.text
+            elif node.tag == "{http://www.itunes.com/dtds/podcast-1.0.dtd}episode":
+                folge["nr"] = "#" + node.text
+            elif node.tag == "{http://purl.org/rss/1.0/modules/content/}encoded": #"{http://purl.org/rss/1.0/modules/content/}encoded":
+                folge["description"] = node.text
+            elif node.tag == "enclosure":
+                folge["url"] = node.attrib["url"]
+            elif node.tag == "pubDate":
+                folge["publish"] = node.text[:16]
+            elif node.tag == "{http://www.itunes.com/dtds/podcast-1.0.dtd}duration":
+                folge["duration"] = node.text
+        all_podcasts.append(folge)
+    
+    return all_podcasts
+
 def eine_stunde_history(all_items):
     all_podcasts = []
 
@@ -218,6 +242,30 @@ def eine_stunde_history(all_items):
             elif node.tag == "{http://www.itunes.com/dtds/podcast-1.0.dtd}episode":
                 folge["nr"] = "#" + node.text
             elif node.tag == "description": #"{http://purl.org/rss/1.0/modules/content/}encoded":
+                folge["description"] = node.text
+            elif node.tag == "enclosure":
+                folge["url"] = node.attrib["url"]
+            elif node.tag == "pubDate":
+                folge["publish"] = node.text[:16]
+            elif node.tag == "{http://www.itunes.com/dtds/podcast-1.0.dtd}duration":
+                folge["duration"] = node.text
+        all_podcasts.append(folge)
+    
+    return all_podcasts
+
+def ndr_corona_update(all_items):
+    all_podcasts = []
+
+    for item in all_items:
+        folge = {}
+        for node in item:
+            if node.tag == "guid":
+                folge["id"] = node.text
+            if node.tag == "title":
+                folge["title"] = node.text
+            elif node.tag == "{http://www.itunes.com/dtds/podcast-1.0.dtd}episode":
+                folge["nr"] = "#" + node.text
+            elif node.tag == "{http://purl.org/rss/1.0/modules/content/}encoded": #"{http://purl.org/rss/1.0/modules/content/}encoded":
                 folge["description"] = node.text
             elif node.tag == "enclosure":
                 folge["url"] = node.attrib["url"]
