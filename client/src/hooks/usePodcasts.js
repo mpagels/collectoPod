@@ -1,19 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { useQuery } from 'react-query'
 
 export default function usePodcasts() {
-  const [verbrechen, setVerbrechen] = useState([])
-  const [mordlust, setMordlust] = useState([])
-  const [zeitVerbrechen, setZeitVerbrechen] = useState([])
-  const [darfsEinBisschenMordSein, setDarfsEinBisschenMordSein] = useState([])
-  const [verbrechenDerVergangenheit, setVerbrechenDerVergangenheit] = useState(
-    []
-  )
-  const [revisitingSunnydale, setRevisitingSunnydale] = useState([])
-  const [zeitPfarrerstoechter, setZeitPfarrerstoechter] = useState([])
-  const [rescherschenUndArschiv, setRescherschenUndArschiv] = useState([])
-  const [eineStundeHistory, setEineStundeHistory] = useState([])
-  const [lastUpdated, setLastUpdated] = useState([])
-
   const [lastVisit, setLastVisit] = useState(
     JSON.parse(
       localStorage.getItem('lastVisited') ??
@@ -58,35 +46,18 @@ export default function usePodcasts() {
         }`
     )
   )
-  useEffect(() => {
+
+  const { isLoading, error, data } = useQuery('mongo', () =>
     fetch(`http://localhost:7532/api`) //${window.location.hostname}
       .then((res) => res.json())
-      .then((data) => {
-        setVerbrechen(data[1])
-        setMordlust(data[2])
-        setZeitVerbrechen(data[3])
-        setDarfsEinBisschenMordSein(data[4])
-        setVerbrechenDerVergangenheit(data[5])
-        setRevisitingSunnydale(data[6])
-        setZeitPfarrerstoechter(data[7])
-        setRescherschenUndArschiv(data[8])
-        setEineStundeHistory(data[9])
-        setLastUpdated(data[0])
-      })
-  }, [])
+  )
 
+  if (isLoading) return { isLoading }
+  if (error) return { error }
   return {
-    verbrechen,
-    lastUpdated,
+    isLoading,
+    data,
     setLastVisit,
     lastVisit,
-    eineStundeHistory,
-    rescherschenUndArschiv,
-    zeitPfarrerstoechter,
-    mordlust,
-    zeitVerbrechen,
-    darfsEinBisschenMordSein,
-    verbrechenDerVergangenheit,
-    revisitingSunnydale,
   }
 }

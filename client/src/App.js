@@ -5,92 +5,102 @@ import StartPage from './pages/StartPage'
 import usePodcasts from './hooks/usePodcasts'
 
 function App() {
-  const {
-    verbrechen,
-    lastUpdated,
-    lastVisit,
-    setLastVisit,
-    eineStundeHistory,
-    rescherschenUndArschiv,
-    zeitPfarrerstoechter,
-    mordlust,
-    zeitVerbrechen,
-    darfsEinBisschenMordSein,
-    verbrechenDerVergangenheit,
-    revisitingSunnydale,
-  } = usePodcasts()
+  const { isLoading, data, lastVisit, setLastVisit } = usePodcasts()
 
-  const lastUpdates = lastUpdated.map((last) => new Date(last.lastUpdated))
+  let t = []
 
-  const routes = [
-    {
-      path: '/verbrechen-von-nebenan',
-      title: 'Verbrechen von nebenan',
-      podcastName: 'verbrechen',
-      podcastGenre: 'crime',
-      data: verbrechen,
-    },
-    {
-      path: '/mordlust',
-      title: 'Mordlust',
-      podcastName: 'mordlust',
-      podcastGenre: 'crime',
-      data: mordlust,
-    },
-    {
-      path: '/zeit-verbrechen',
-      title: 'Zeit Verbrechen',
-      podcastName: 'zeit_verbrechen',
-      podcastGenre: 'crime',
-      data: zeitVerbrechen,
-    },
-    {
-      path: '/darfs-ein-bisserl-mord-sein',
-      title: "Darf's ein bisserl Mord sein?",
-      podcastName: 'darfs_ein_bisschen_mord_sein',
-      podcastGenre: 'crime',
-      data: darfsEinBisschenMordSein,
-    },
-    {
-      path: '/verbrechen_der_vergangenheit',
-      title: 'Verbrechen der Vergangenheit',
-      podcastName: 'verbrechen_der_vergangenheit',
-      podcastGenre: 'crime',
-      data: verbrechenDerVergangenheit,
-    },
-    {
-      path: '/revisiting_sunnydale',
-      title: 'Revisiting Sunnydale',
-      podcastName: 'revisiting_sunnydale',
-      podcastGenre: 'other',
-      data: revisitingSunnydale,
-    },
-    {
-      path: '/rescherschen_und_arschiv',
-      title: 'Rescherchen und Arschiv',
-      podcastName: 'rescherschen_und_arschiv',
-      podcastGenre: 'other',
-      data: rescherschenUndArschiv,
-    },
-    {
-      path: '/zeit_pfarrerstoechter',
-      title: 'Unter Pfarrerstöchtern',
-      podcastName: 'zeit_pfarrerstoechter',
-      podcastGenre: 'other',
-      data: zeitPfarrerstoechter,
-    },
-    {
-      path: '/eineStundeHistory',
-      title: 'Eine Stunde History',
-      podcastName: 'eineStundeHistory',
-      podcastGenre: 'other',
-      data: eineStundeHistory,
-    },
-  ]
+  if (!isLoading) {
+    const [
+      lastUpdated,
+      verbrechen,
+      mordlust,
+      zeitVerbrechen,
+      darfsEinBisschenMordSein,
+      verbrechenDerVergangenheit,
+      revisitingSunnydale,
+      rescherschenUndArschiv,
+      zeitPfarrerstoechter,
+      eineStundeHistory,
+    ] = data
 
-  return (
+    const lastUpdates = lastUpdated.map((last) => new Date(last.lastUpdated))
+
+    const routes = [
+      {
+        path: '/verbrechen-von-nebenan',
+        title: 'Verbrechen von nebenan',
+        podcastName: 'verbrechen',
+        podcastGenre: 'crime',
+        data: verbrechen,
+      },
+      {
+        path: '/mordlust',
+        title: 'Mordlust',
+        podcastName: 'mordlust',
+        podcastGenre: 'crime',
+        data: mordlust,
+      },
+      {
+        path: '/zeit-verbrechen',
+        title: 'Zeit Verbrechen',
+        podcastName: 'zeit_verbrechen',
+        podcastGenre: 'crime',
+        data: zeitVerbrechen,
+      },
+      {
+        path: '/darfs-ein-bisserl-mord-sein',
+        title: "Darf's ein bisserl Mord sein?",
+        podcastName: 'darfs_ein_bisschen_mord_sein',
+        podcastGenre: 'crime',
+        data: darfsEinBisschenMordSein,
+      },
+      {
+        path: '/verbrechen_der_vergangenheit',
+        title: 'Verbrechen der Vergangenheit',
+        podcastName: 'verbrechen_der_vergangenheit',
+        podcastGenre: 'crime',
+        data: verbrechenDerVergangenheit,
+      },
+      {
+        path: '/revisiting_sunnydale',
+        title: 'Revisiting Sunnydale',
+        podcastName: 'revisiting_sunnydale',
+        podcastGenre: 'other',
+        data: revisitingSunnydale,
+      },
+      {
+        path: '/rescherschen_und_arschiv',
+        title: 'Rescherchen und Arschiv',
+        podcastName: 'rescherschen_und_arschiv',
+        podcastGenre: 'other',
+        data: rescherschenUndArschiv,
+      },
+      {
+        path: '/zeit_pfarrerstoechter',
+        title: 'Unter Pfarrerstöchtern',
+        podcastName: 'zeit_pfarrerstoechter',
+        podcastGenre: 'other',
+        data: zeitPfarrerstoechter,
+      },
+      {
+        path: '/eineStundeHistory',
+        title: 'Eine Stunde History',
+        podcastName: 'eineStundeHistory',
+        podcastGenre: 'other',
+        data: eineStundeHistory,
+      },
+    ]
+
+    t.push(routes, lastUpdates)
+  }
+
+  return isLoading ? (
+    <Route path="/">
+      <StartPage isLoading={isLoading} />
+    </Route>
+  ) : (
     <Switch>
-      {routes.map(({ path, title, podcastName, podcastGenre, data }) => (
+      {t[0].map(({ path, title, podcastName, podcastGenre, data }) => (
         <Route key={podcastName} path={path}>
           <PodCast
             title={title}
@@ -99,12 +109,12 @@ function App() {
             data={data}
             lastVisit={lastVisit}
             setLastVisit={setLastVisit}
-            lastUpdates={lastUpdates}
+            lastUpdates={t[1]}
           />
         </Route>
       ))}
       <Route path="/">
-        <StartPage lastUpdates={lastUpdates} lastVisit={lastVisit} />
+        <StartPage lastUpdates={t[1]} lastVisit={lastVisit} />
       </Route>
     </Switch>
   )
