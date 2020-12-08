@@ -2,9 +2,19 @@ import React, { useState } from 'react'
 import styled from 'styled-components/macro'
 import CrimeNav from '../components/Nav/CrimeNav'
 import OtherNav from '../components/Nav/OtherNav'
+import Lottie from 'react-lottie'
+import animationData from '../assets/lotti/search-processing2.json'
 
-export default function StartPage({ lastUpdates, lastVisit }) {
+export default function StartPage({ isLoading, lastUpdates, lastVisit }) {
   const [isSecondPodcasts, setIsSecondPodcasts] = useState(false)
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: 'xMidYMid slice',
+    },
+  }
 
   return (
     <Screen>
@@ -12,14 +22,22 @@ export default function StartPage({ lastUpdates, lastVisit }) {
         <AppTitle>collectoPod</AppTitle>
         <AppSubTitle>Your favorite podcasts in one place</AppSubTitle>
       </Header>
-      <PodcastSwitcher>
-        <Switcher onClick={() => setIsSecondPodcasts(false)}>crime</Switcher>
-        <Switcher onClick={() => setIsSecondPodcasts(true)}>other</Switcher>
-      </PodcastSwitcher>
-      {isSecondPodcasts ? (
-        <OtherNav lastUpdates={lastUpdates} lastVisit={lastVisit} />
+      {isLoading ? (
+        <Lottie options={defaultOptions} height={200} width={200} />
       ) : (
-        <CrimeNav lastUpdates={lastUpdates} lastVisit={lastVisit} />
+        <>
+          <PodcastSwitcher>
+            <Switcher onClick={() => setIsSecondPodcasts(false)}>
+              crime
+            </Switcher>
+            <Switcher onClick={() => setIsSecondPodcasts(true)}>other</Switcher>
+          </PodcastSwitcher>
+          {isSecondPodcasts ? (
+            <OtherNav lastUpdates={lastUpdates} lastVisit={lastVisit} />
+          ) : (
+            <CrimeNav lastUpdates={lastUpdates} lastVisit={lastVisit} />
+          )}
+        </>
       )}
     </Screen>
   )
