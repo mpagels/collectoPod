@@ -42,6 +42,14 @@ export default function usePodcasts() {
           "eineStundeHistory":
           {
             "lastVisited":0
+          },
+          "spezialgelagerter_sonderpodcast":
+          {
+            "lastVisited":0
+          },
+          "ndr_corona_update":
+          {
+            "lastVisited":0
           }
         }`
     )

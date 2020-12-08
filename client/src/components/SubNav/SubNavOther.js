@@ -5,10 +5,28 @@ import revisitingSunnydaleLogo from '../../assets/img/revisiting-sunnydale-sm.jp
 import arschivUndReschercheLogo from '../../assets/img/arschiv-und-rescherche-sm.jpg'
 import pfarrersToechterLogo from '../../assets/img/pfarrerstoechter-sm.jpg'
 import eineStundeHistory from '../../assets/img/eine-stunde-history-sm.jpg'
+import coronaPodcastUpdateLogo from '../../assets/img/corona-podcast-update-sm.jpg'
+import spezialgelagerterSonderpodcastLogo from '../../assets/img/spezialgelagerter-sonderpodcast-sm.jpg'
 
 export default function SubNavOther({ lastUpdates, lastVisit }) {
   return (
     <>
+      <StyledLink to="/ndr-corona-update">
+        <NavLogos src={coronaPodcastUpdateLogo} />
+        {lastUpdates.length > 0 &&
+          lastUpdates[10].valueOf() >
+            lastVisit?.ndr_corona_update?.lastVisited && (
+            <NewContentIndicator />
+          )}
+      </StyledLink>
+      <StyledLink to="/spezialgelagerter-sonderpodcast">
+        <NavLogos src={spezialgelagerterSonderpodcastLogo} />
+        {lastUpdates.length > 0 &&
+          lastUpdates[9].valueOf() >
+            lastVisit?.spezialgelagerter_sonderpodcast?.lastVisited && (
+            <NewContentIndicator />
+          )}
+      </StyledLink>
       <StyledLink to="/revisiting_sunnydale">
         <NavLogos src={revisitingSunnydaleLogo} />
         {lastUpdates.length > 0 &&
@@ -50,6 +68,8 @@ const NavLogos = styled.img`
   cursor: pointer;
   box-shadow: 0 0 5px black;
   outline: none;
+  width: 40px;
+  height: 40px;
 `
 const StyledLink = styled(Link)`
   display: flex;
