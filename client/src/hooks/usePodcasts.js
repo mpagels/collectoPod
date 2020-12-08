@@ -56,7 +56,7 @@ export default function usePodcasts() {
   )
 
   const { isLoading, error, data } = useQuery('mongo', () =>
-    fetch(`http://localhost:7532/api`) //${window.location.hostname}
+    fetch('/api') //${window.location.hostname}
       .then((res) => res.json())
   )
 
