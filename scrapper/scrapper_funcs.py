@@ -30,7 +30,7 @@ def verbrechen(all_items):
             elif node.tag == "enclosure":
                 folge["url"] = node.attrib["url"]
             elif node.tag == "pubDate":
-                folge["publish"] = node.text[:16]
+                folge["publish"] = node.text
             elif node.tag == "{http://www.itunes.com/dtds/podcast-1.0.dtd}duration":
                 folge["duration"] = node.text
         all_podcasts.append(folge)
@@ -54,7 +54,7 @@ def mordlust(all_items):
             elif node.tag == "enclosure":
                 folge["url"] = node.attrib["url"]
             elif node.tag == "pubDate":
-                folge["publish"] = node.text[:16]
+                folge["publish"] = node.text
             elif node.tag == "{http://www.itunes.com/dtds/podcast-1.0.dtd}duration":
                 folge["duration"] = node.text
         all_podcasts.append(folge)
@@ -78,7 +78,7 @@ def zeit_verbrechen(all_items):
             elif node.tag == "enclosure":
                 folge["url"] = node.attrib["url"]
             elif node.tag == "pubDate":
-                folge["publish"] = node.text[:16]
+                folge["publish"] = node.text
             elif node.tag == "{http://www.itunes.com/dtds/podcast-1.0.dtd}duration":
                 folge["duration"] = node.text
         all_podcasts.append(folge)
@@ -102,7 +102,7 @@ def darfs_ein_bisschen_mord_sein(all_items):
             elif node.tag == "enclosure":
                 folge["url"] = node.attrib["url"]
             elif node.tag == "pubDate":
-                folge["publish"] = node.text[:16]
+                folge["publish"] = node.text
             elif node.tag == "{http://www.itunes.com/dtds/podcast-1.0.dtd}duration":
                 folge["duration"] = node.text
         all_podcasts.append(folge)
@@ -126,7 +126,7 @@ def verbrechen_der_vergangenheit(all_items):
             elif node.tag == "enclosure":
                 folge["url"] = node.attrib["url"]
             elif node.tag == "pubDate":
-                folge["publish"] = node.text[:16]
+                folge["publish"] = node.text
             elif node.tag == "{http://www.itunes.com/dtds/podcast-1.0.dtd}duration":
                 folge["duration"] = node.text
         all_podcasts.append(folge)
@@ -150,7 +150,7 @@ def revisiting_sunnydale(all_items):
             elif node.tag == "enclosure":
                 folge["url"] = node.attrib["url"]
             elif node.tag == "pubDate":
-                folge["publish"] = node.text[:16]
+                folge["publish"] = node.text
             elif node.tag == "{http://www.itunes.com/dtds/podcast-1.0.dtd}duration":
                 folge["duration"] = node.text
         all_podcasts.append(folge)
@@ -174,7 +174,7 @@ def zeit_pfarrerstoechter(all_items):
             elif node.tag == "enclosure":
                 folge["url"] = node.attrib["url"]
             elif node.tag == "pubDate":
-                folge["publish"] = node.text[:16]
+                folge["publish"] = node.text
             elif node.tag == "{http://www.itunes.com/dtds/podcast-1.0.dtd}duration":
                 folge["duration"] = node.text
         all_podcasts.append(folge)
@@ -198,7 +198,7 @@ def rescherschen_und_arschiv(all_items):
             elif node.tag == "enclosure":
                 folge["url"] = node.attrib["url"]
             elif node.tag == "pubDate":
-                folge["publish"] = node.text[:16]
+                folge["publish"] = node.text
             elif node.tag == "{http://www.itunes.com/dtds/podcast-1.0.dtd}duration":
                 folge["duration"] = node.text
         all_podcasts.append(folge)
@@ -222,7 +222,7 @@ def spezialgelagerter_sonderpodcast(all_items):
             elif node.tag == "enclosure":
                 folge["url"] = node.attrib["url"]
             elif node.tag == "pubDate":
-                folge["publish"] = node.text[:16]
+                folge["publish"] = node.text
             elif node.tag == "{http://www.itunes.com/dtds/podcast-1.0.dtd}duration":
                 folge["duration"] = node.text
         all_podcasts.append(folge)
@@ -246,7 +246,7 @@ def eine_stunde_history(all_items):
             elif node.tag == "enclosure":
                 folge["url"] = node.attrib["url"]
             elif node.tag == "pubDate":
-                folge["publish"] = node.text[:16]
+                folge["publish"] = node.text
             elif node.tag == "{http://www.itunes.com/dtds/podcast-1.0.dtd}duration":
                 folge["duration"] = node.text
         all_podcasts.append(folge)
@@ -270,7 +270,7 @@ def ndr_corona_update(all_items):
             elif node.tag == "enclosure":
                 folge["url"] = node.attrib["url"]
             elif node.tag == "pubDate":
-                folge["publish"] = node.text[:16]
+                folge["publish"] = node.text
             elif node.tag == "{http://www.itunes.com/dtds/podcast-1.0.dtd}duration":
                 folge["duration"] = node.text
         all_podcasts.append(folge)

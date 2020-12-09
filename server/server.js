@@ -18,12 +18,18 @@ server.use(cors())
 
 server.use(express.static(path.join('..', 'client', 'build')))
 
-server.get('/', function (req, res) {
+/* server.get('/', function (req, res) {
   res.sendFile(path.join('..', 'client', 'build', 'index.html'))
-})
+}) */
+
 server.get('/api', (req, res) => {
   run(res)
 })
+
+server.get('/api/logger', (req, res) => {
+  res.sendFile(path.resolve('../scrapper/scrapper.log'))
+})
+
 server.listen(7532, () =>
   console.log('Server started on http://localhost:7532')
 )
@@ -35,27 +41,35 @@ async function run(res) {
 
     const database = client.db('podcasts')
     let collection = database.collection('verbrechen-von-nebenan')
-    const verbrechen = await collection.find()
+    const verbrechen = await collection.find().sort({ publish: -1 })
     collection = database.collection('mordlust')
-    const mordlust = await collection.find()
+    const mordlust = await collection.find().sort({ publish: -1 })
     collection = database.collection('zeit-verbrechen')
-    const zeit_verbrechen = await collection.find()
+    const zeit_verbrechen = await collection.find().sort({ publish: -1 })
     collection = database.collection('darfs-ein-bisschen-mord-sein')
-    const darfs_ein_bisschen_mord_sein = await collection.find()
+    const darfs_ein_bisschen_mord_sein = await collection
+      .find()
+      .sort({ publish: -1 })
     collection = database.collection('verbrechen-der-vergangenheit')
-    const verbrechen_der_vergangenheit = await collection.find()
+    const verbrechen_der_vergangenheit = await collection
+      .find()
+      .sort({ publish: -1 })
     collection = database.collection('revisiting-sunnydale')
-    const revisiting_sunnydale = await collection.find()
+    const revisiting_sunnydale = await collection.find().sort({ publish: -1 })
     collection = database.collection('zeit-pfarrerstoechter')
-    const zeit_pfarrerstoechter = await collection.find()
+    const zeit_pfarrerstoechter = await collection.find().sort({ publish: -1 })
     collection = database.collection('rescherschen-und-arschiv')
-    const rescherschen_und_arschiv = await collection.find()
+    const rescherschen_und_arschiv = await collection
+      .find()
+      .sort({ publish: -1 })
     collection = database.collection('eine-stunde-history')
-    const eine_stunde_history = await collection.find()
+    const eine_stunde_history = await collection.find().sort({ publish: -1 })
     collection = database.collection('ndr-corona-update')
-    const ndrCoronaUpdate = await collection.find()
+    const ndrCoronaUpdate = await collection.find().sort({ publish: -1 })
     collection = database.collection('spezialgelagerter-sonderpodcast')
-    const spezialgelagerterSonderpodcast = await collection.find()
+    const spezialgelagerterSonderpodcast = await collection
+      .find()
+      .sort({ publish: -1 })
     const collection2 = database.collection('lastUpdated')
     const updateTimes = await collection2.find()
 
