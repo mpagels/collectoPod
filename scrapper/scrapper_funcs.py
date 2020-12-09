@@ -31,7 +31,7 @@ def verbrechen(all_items):
             elif node.tag == "enclosure":
                 folge["url"] = node.attrib["url"]
             elif node.tag == "pubDate":
-                folge["publish"] = datetime.datetime.strptime(node.text,"%a, %d %b %Y %H:%M:%S %z")datetime.strptime(node.text,"%a, %d %b %Y %H:%M:%S %z")
+                folge["publish"] = datetime.datetime.strptime(node.text,"%a, %d %b %Y %H:%M:%S %z")
             elif node.tag == "{http://www.itunes.com/dtds/podcast-1.0.dtd}duration":
                 folge["duration"] = node.text
         all_podcasts.append(folge)
