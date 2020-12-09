@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from scrapper_funcs import (get_xml_from, verbrechen, mordlust, 
 zeit_verbrechen, darfs_ein_bisschen_mord_sein, 
 verbrechen_der_vergangenheit, revisiting_sunnydale, 
