@@ -107,9 +107,11 @@ const PodcastContent = styled.main`
 const Navigation = styled.section`
   display: grid;
   grid-template-columns: 20% 80%;
-  background-color: transparent;
+  background-color: #313133;
   grid-area: footer;
   padding: 10px 0;
+  position: sticky;
+  bottom: 0;
 `
 const TopicChange = styled.div`
   display: flex;
