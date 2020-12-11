@@ -26,6 +26,5 @@ export default function getLastVisitFromLocalStorage() {
         lastVisited: 0,
       })
   )
-  console.log('lastVisitedFromLocalStorage', lastVisitedFromLocalStorage)
   return lastVisitedFromLocalStorage
 }
