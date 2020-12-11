@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import PodCast from './pages/Podcast'
 import StartPage from './pages/StartPage'
@@ -6,6 +6,7 @@ import usePodcasts from './hooks/usePodcasts'
 
 function App() {
   const { isLoading, data, lastVisit, setLastVisit } = usePodcasts()
+  const [isSecondPodcasts, setIsSecondPodcasts] = useState(false)
 
   let t = []
 
@@ -31,7 +32,7 @@ function App() {
       {
         path: '/verbrechen-von-nebenan',
         title: 'Verbrechen von nebenan',
-        podcastName: 'verbrechen',
+        podcastName: 'verbrechen-von-nebenan',
         podcastGenre: 'crime',
         data: verbrechen,
       },
@@ -45,64 +46,64 @@ function App() {
       {
         path: '/zeit-verbrechen',
         title: 'Zeit Verbrechen',
-        podcastName: 'zeit_verbrechen',
+        podcastName: 'zeit-verbrechen',
         podcastGenre: 'crime',
         data: zeitVerbrechen,
       },
       {
         path: '/darfs-ein-bisserl-mord-sein',
         title: "Darf's ein bisserl Mord sein?",
-        podcastName: 'darfs_ein_bisschen_mord_sein',
+        podcastName: 'darfs-ein-bisschen-mord-sein',
         podcastGenre: 'crime',
         data: darfsEinBisschenMordSein,
       },
       {
-        path: '/verbrechen_der_vergangenheit',
+        path: '/verbrechen-der-vergangenheit',
         title: 'Verbrechen der Vergangenheit',
-        podcastName: 'verbrechen_der_vergangenheit',
+        podcastName: 'verbrechen-der-vergangenheit',
         podcastGenre: 'crime',
         data: verbrechenDerVergangenheit,
       },
       {
         path: '/ndr-corona-update',
         title: 'Das Coronavirus-Update',
-        podcastName: 'ndr_corona_update',
+        podcastName: 'ndr-corona-update',
         podcastGenre: 'other',
         data: ndrCoronaUpdate,
       },
       {
         path: '/spezialgelagerter-sonderpodcast',
         title: 'Spezialgelagerter Sonderpodcast',
-        podcastName: 'spezialgelagerter_sonderpodcast',
+        podcastName: 'spezialgelagerter-sonderpodcast',
         podcastGenre: 'other',
         data: spezialgelagerterSonderpodcast,
       },
       {
-        path: '/rescherschen_und_arschiv',
+        path: '/rescherschen-und-arschiv',
         title: 'Rescherchen und Arschiv',
-        podcastName: 'rescherschen_und_arschiv',
+        podcastName: 'rescherschen-und-arschiv',
         podcastGenre: 'other',
         data: rescherschenUndArschiv,
       },
       {
-        path: '/revisiting_sunnydale',
+        path: '/revisiting-sunnydale',
         title: 'Revisiting Sunnydale',
-        podcastName: 'revisiting_sunnydale',
+        podcastName: 'revisiting-sunnydale',
         podcastGenre: 'other',
         data: revisitingSunnydale,
       },
 
       {
-        path: '/zeit_pfarrerstoechter',
+        path: '/zeit-pfarrerstoechter',
         title: 'Unter Pfarrerstöchtern',
-        podcastName: 'zeit_pfarrerstoechter',
+        podcastName: 'zeit-pfarrerstoechter',
         podcastGenre: 'other',
         data: zeitPfarrerstoechter,
       },
       {
-        path: '/eineStundeHistory',
+        path: '/eine-stunde-history',
         title: 'Eine Stunde History',
-        podcastName: 'eineStundeHistory',
+        podcastName: 'eine-stunde-history',
         podcastGenre: 'other',
         data: eineStundeHistory,
       },
@@ -131,7 +132,12 @@ function App() {
         </Route>
       ))}
       <Route path="/">
-        <StartPage lastUpdates={t[1]} lastVisit={lastVisit} />
+        <StartPage
+          lastUpdates={t[1]}
+          lastVisit={lastVisit}
+          isSecondPodcasts={isSecondPodcasts}
+          setIsSecondPodcasts={setIsSecondPodcasts}
+        />
       </Route>
     </Switch>
   )

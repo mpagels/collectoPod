@@ -1,59 +1,9 @@
 import { useState } from 'react'
 import { useQuery } from 'react-query'
+import getLastVisitFromLocalStorage from '../utils/podcastNames'
 
 export default function usePodcasts() {
-  const [lastVisit, setLastVisit] = useState(
-    JSON.parse(
-      localStorage.getItem('lastVisited') ??
-        `
-      {
-        "verbrechen":
-          {
-            "lastVisited":0
-          },
-          "mordlust":
-          {
-            "lastVisited":0
-          },
-          "zeit_verbrechen":
-          {
-            "lastVisited":0
-          },
-          "darfs_ein_bisschen_mord_sein":
-          {
-            "lastVisited":0
-          },
-          "verbrechen_der_vergangenheit":
-          {
-            "lastVisited":0
-          },
-          "revisiting_sunnydale":
-          {
-            "lastVisited":0
-          },
-          "zeit_pfarrerstoechter":
-          {
-            "lastVisited":0
-          },
-          "rescherschen_und_arschiv":
-          {
-            "lastVisited":0
-          },
-          "eineStundeHistory":
-          {
-            "lastVisited":0
-          },
-          "spezialgelagerter_sonderpodcast":
-          {
-            "lastVisited":0
-          },
-          "ndr_corona_update":
-          {
-            "lastVisited":0
-          }
-        }`
-    )
-  )
+  const [lastVisit, setLastVisit] = useState(getLastVisitFromLocalStorage())
 
   const { isLoading, error, data } = useQuery('mongo', () =>
     fetch('/api') //${window.location.hostname}
@@ -62,6 +12,7 @@ export default function usePodcasts() {
 
   if (isLoading) return { isLoading }
   if (error) return { error }
+
   return {
     isLoading,
     data,

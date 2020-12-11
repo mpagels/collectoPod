@@ -1,12 +1,17 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components/macro'
 import CrimeNav from '../components/Nav/CrimeNav'
 import OtherNav from '../components/Nav/OtherNav'
 import Lottie from 'react-lottie'
 import animationData from '../assets/lotti/search-processing2.json'
 
-export default function StartPage({ isLoading, lastUpdates, lastVisit }) {
-  const [isSecondPodcasts, setIsSecondPodcasts] = useState(false)
+export default function StartPage({
+  isLoading,
+  lastUpdates,
+  lastVisit,
+  isSecondPodcasts,
+  setIsSecondPodcasts,
+}) {
   const defaultOptions = {
     loop: true,
     autoplay: true,

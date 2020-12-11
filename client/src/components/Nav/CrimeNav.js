@@ -14,7 +14,8 @@ export default function CrimeNav({ lastUpdates, lastVisit }) {
         <Link to="/verbrechen-von-nebenan">
           <NavigateTo img={verbrechenVonNebenAnLogo}>
             {lastUpdates.length > 0 &&
-              lastUpdates[0].valueOf() > lastVisit?.verbrechen?.lastVisited && (
+              lastUpdates[0].valueOf() >
+                lastVisit['verbrechen-von-nebenan']?.lastVisited && (
                 <New>NEUER INHALT</New>
               )}
           </NavigateTo>
@@ -31,7 +32,7 @@ export default function CrimeNav({ lastUpdates, lastVisit }) {
           <NavigateTo img={zeitVerbrechenLogo}>
             {lastUpdates.length > 0 &&
               lastUpdates[2].valueOf() >
-                lastVisit?.zeit_verbrechen?.lastVisited && (
+                lastVisit['zeit-verbrechen']?.lastVisited && (
                 <New>NEUER INHALT</New>
               )}
           </NavigateTo>
@@ -40,16 +41,16 @@ export default function CrimeNav({ lastUpdates, lastVisit }) {
           <NavigateTo img={darfsEinBisschenMordLogo}>
             {lastUpdates.length > 0 &&
               lastUpdates[3].valueOf() >
-                lastVisit?.darfs_ein_bisschen_mord_sein?.lastVisited && (
+                lastVisit['darfs-ein-bisschen-mord-sein']?.lastVisited && (
                 <New>NEUER INHALT</New>
               )}
           </NavigateTo>
         </Link>
-        <Link to="/verbrechen_der_vergangenheit">
+        <Link to="/verbrechen-der-vergangenheit">
           <NavigateTo img={verbrechenDerVergangenheitLogo}>
             {lastUpdates.length > 0 &&
               lastUpdates[4].valueOf() >
-                lastVisit?.verbrechen_der_vergangenheit?.lastVisited && (
+                lastVisit['verbrechen-der-vergangenheit']?.lastVisited && (
                 <New>NEUER INHALT</New>
               )}
           </NavigateTo>

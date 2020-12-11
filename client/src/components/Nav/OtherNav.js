@@ -3,7 +3,7 @@ import styled from 'styled-components/macro'
 import { Link, Switch } from 'react-router-dom'
 import arschivUndReschercheLogo from '../../assets/img/arschiv-und-rescherche-big2.jpg'
 import eineStundeHistoryLogo from '../../assets/img/eine-stunde-history-big2.jpg'
-import pfarrersToechterLogo from '../../assets/img/pfarrerstoechter_big2.jpg'
+import pfarrersToechterLogo from '../../assets/img/pfarrerstoechter-big2.jpg'
 import revisitingSunnydaleLogo from '../../assets/img/revisiting-sunnydale-big2.jpg'
 import coronaPodcastUpdateLogo from '../../assets/img/corona-podcast-update-big2.jpg'
 import spezialgelagerterSonderpodcastLogo from '../../assets/img/spezialgelagerter-sonderpodcast-big2.jpg'
@@ -16,7 +16,7 @@ export default function OtherNav({ lastUpdates, lastVisit }) {
           <NavigateTo img={coronaPodcastUpdateLogo}>
             {lastUpdates.length > 0 &&
               lastUpdates[10].valueOf() >
-                lastVisit?.ndr_corona_update?.lastVisited && (
+                lastVisit['ndr-corona-update']?.lastVisited && (
                 <New>NEUER INHALT</New>
               )}
           </NavigateTo>
@@ -25,43 +25,43 @@ export default function OtherNav({ lastUpdates, lastVisit }) {
           <NavigateTo img={spezialgelagerterSonderpodcastLogo}>
             {lastUpdates.length > 0 &&
               lastUpdates[9].valueOf() >
-                lastVisit?.spezialgelagerter_sonderpodcast?.lastVisited && (
+                lastVisit['spezialgelagerter-sonderpodcast']?.lastVisited && (
                 <New>NEUER INHALT</New>
               )}
           </NavigateTo>
         </Link>
-        <Link to="/revisiting_sunnydale">
+        <Link to="/revisiting-sunnydale">
           <NavigateTo img={revisitingSunnydaleLogo}>
             {lastUpdates.length > 0 &&
               lastUpdates[5].valueOf() >
-                lastVisit?.revisiting_sunnydale?.lastVisited && (
+                lastVisit['revisiting-sunnydale']?.lastVisited && (
                 <New>NEUER INHALT</New>
               )}
           </NavigateTo>
         </Link>
-        <Link to="/eineStundeHistory">
+        <Link to="/eine-stunde-history">
           <NavigateTo img={eineStundeHistoryLogo}>
             {lastUpdates.length > 0 &&
               lastUpdates[8].valueOf() >
-                lastVisit?.eineStundeHistory?.lastVisited && (
+                lastVisit['eine-stunde-history']?.lastVisited && (
                 <New>NEUER INHALT</New>
               )}
           </NavigateTo>
         </Link>
-        <Link to="rescherschen_und_arschiv">
+        <Link to="rescherschen-und-arschiv">
           <NavigateTo img={arschivUndReschercheLogo}>
             {lastUpdates.length > 0 &&
               lastUpdates[7].valueOf() >
-                lastVisit?.rescherschen_und_arschiv?.lastVisited && (
+                lastVisit['rescherschen-und-arschiv']?.lastVisited && (
                 <New>NEUER INHALT</New>
               )}
           </NavigateTo>
         </Link>
-        <Link to="zeit_pfarrerstoechter">
+        <Link to="zeit-pfarrerstoechter">
           <NavigateTo img={pfarrersToechterLogo}>
             {lastUpdates.length > 0 &&
               lastUpdates[6].valueOf() >
-                lastVisit?.zeit_pfarrerstoechter?.lastVisited && (
+                lastVisit['zeit-pfarrerstoechter']?.lastVisited && (
                 <New>NEUER INHALT</New>
               )}
           </NavigateTo>
