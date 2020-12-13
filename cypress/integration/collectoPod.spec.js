@@ -1,5 +1,6 @@
 beforeEach(() => {
   cy.visit('/')
+  cy.intercept('api', { fixture: 'api.json' })
 })
 
 describe('Visits collectoPod', () => {
@@ -15,6 +16,7 @@ describe('Visits collectoPod', () => {
   })
 
   it('checks if "NEUER INHALT" tag works correctly', () => {
+    // crime selection
     cy.get(
       '[href="/verbrechen-von-nebenan"] > .CrimeNav__NavigateTo-sc-1dr41c-1 > [data-cy=newContent]'
     ).as('newDataVerbrechen')
@@ -31,7 +33,6 @@ describe('Visits collectoPod', () => {
       '[href="/verbrechen-der-vergangenheit"] > .CrimeNav__NavigateTo-sc-1dr41c-1 > [data-cy=newContent]'
     ).as('newDataVerbrechenDerVergangenheit')
 
-    cy.get('@newDataVerbrechen').should('exist')
     cy.get('@newDataVerbrechen').should('exist')
     cy.get('@newDataMordlust').should('exist')
     cy.get('@newDataZeitVerbrechen').should('exist')
@@ -73,25 +74,103 @@ describe('Visits collectoPod', () => {
     cy.contains('DOWNLOAD')
     cy.get('svg').click()
     cy.get('@newDataVerbrechenDerVergangenheit').should('not.exist')
-  })
-  /*   it('checks if localStorage is set correctly', () => {
-    expect(localStorage.getItem('lastVisited')).to.be.null
 
-    cy.contains('crime')
-    cy.window().then((window) =>
-      expect(window.localStorage.getItem('lastVisited')).to.eq(`{
-            'verbrechen-von-nebenan': { lastVisited: 0 },
-            mordlust: { lastVisited: 0 },
-            'zeit-verbrechen': { lastVisited: 0 },
-            'darfs-ein-bisschen-mord-sein': { lastVisited: 0 },
-            'verbrechen-der-vergangenheit': { lastVisited: 0 },
-            'revisiting-sunnydale': { lastVisited: 0 },
-            'rescherschen-und-arschiv': { lastVisited: 0 },
-            'zeit-pfarrerstoechter': { lastVisited: 0 },
-            'eine-stunde-history': { lastVisited: 0 },
-            'spezialgelagerter-sonderpodcast': { lastVisited: 0 },
-            'ndr-corona-update': { lastVisited: 0 },
-          }`)
-    )
-  }) */
+    // other selection
+
+    cy.contains('other').click()
+    cy.get(
+      '[href="/ndr-corona-update"] > .OtherNav__NavigateTo-sc-9wg02j-1 > .OtherNav__New-sc-9wg02j-2'
+    ).as('newDataCorona')
+    cy.get(
+      '[href="/spezialgelagerter-sonderpodcast"] > .OtherNav__NavigateTo-sc-9wg02j-1 > .OtherNav__New-sc-9wg02j-2'
+    ).as('newDataSpezialgelagerterSonderpodcast')
+    cy.get(
+      '[href="/revisiting-sunnydale"] > .OtherNav__NavigateTo-sc-9wg02j-1 > .OtherNav__New-sc-9wg02j-2'
+    ).as('newDataRevisitingSunnydale')
+    cy.get(
+      '[href="/eine-stunde-history"] > .OtherNav__NavigateTo-sc-9wg02j-1 > .OtherNav__New-sc-9wg02j-2'
+    ).as('newDataEineStundeHistory')
+    cy.get(
+      '[href="/rescherschen-und-arschiv"] > .OtherNav__NavigateTo-sc-9wg02j-1 > .OtherNav__New-sc-9wg02j-2'
+    ).as('newDataRescherschenUndArschiv')
+    cy.get(
+      '[href="/zeit-pfarrerstoechter"] > .OtherNav__NavigateTo-sc-9wg02j-1 > .OtherNav__New-sc-9wg02j-2'
+    ).as('newDataZeitFfarrerstoechter')
+
+    cy.get('@newDataCorona').should('exist')
+    cy.get('@newDataSpezialgelagerterSonderpodcast').should('exist')
+    cy.get('@newDataRevisitingSunnydale').should('exist')
+    cy.get('@newDataEineStundeHistory').should('exist')
+    cy.get('@newDataRescherschenUndArschiv').should('exist')
+    cy.get('@newDataZeitFfarrerstoechter').should('exist')
+  })
+  it('checks if localStorage is set correctly', () => {
+    expect(localStorage.getItem('lastVisited')).to.be.null
+    cy.get('[href="/verbrechen-von-nebenan"]').click()
+    cy.get('svg')
+      .click()
+      .should(() => {
+        expect(localStorage.getItem('lastVisited')).to.exist
+        const ls = JSON.parse(localStorage.getItem('lastVisited'))
+        expect(ls['verbrechen-von-nebenan'].lastVisited).to.be.greaterThan(0)
+        expect(ls['mordlust'].lastVisited).to.equal(0)
+        expect(ls['zeit-verbrechen'].lastVisited).to.equal(0)
+        expect(ls['darfs-ein-bisschen-mord-sein'].lastVisited).to.equal(0)
+        expect(ls['verbrechen-der-vergangenheit'].lastVisited).to.equal(0)
+      })
+    cy.get('[href="/mordlust"]').click()
+    cy.get('svg')
+      .click()
+      .should(() => {
+        expect(localStorage.getItem('lastVisited')).to.exist
+        const ls = JSON.parse(localStorage.getItem('lastVisited'))
+        expect(ls['verbrechen-von-nebenan'].lastVisited).to.be.greaterThan(0)
+        expect(ls['mordlust'].lastVisited).to.be.greaterThan(0)
+        expect(ls['zeit-verbrechen'].lastVisited).to.equal(0)
+        expect(ls['darfs-ein-bisschen-mord-sein'].lastVisited).to.equal(0)
+        expect(ls['verbrechen-der-vergangenheit'].lastVisited).to.equal(0)
+      })
+    cy.get('[href="/zeit-verbrechen"]').click()
+    cy.get('svg')
+      .click()
+      .should(() => {
+        expect(localStorage.getItem('lastVisited')).to.exist
+        const ls = JSON.parse(localStorage.getItem('lastVisited'))
+        expect(ls['verbrechen-von-nebenan'].lastVisited).to.be.greaterThan(0)
+        expect(ls['mordlust'].lastVisited).to.be.greaterThan(0)
+        expect(ls['zeit-verbrechen'].lastVisited).to.be.greaterThan(0)
+        expect(ls['darfs-ein-bisschen-mord-sein'].lastVisited).to.equal(0)
+        expect(ls['verbrechen-der-vergangenheit'].lastVisited).to.equal(0)
+      })
+    cy.get('[href="/darfs-ein-bisserl-mord-sein"]').click()
+    cy.get('svg')
+      .click()
+      .should(() => {
+        expect(localStorage.getItem('lastVisited')).to.exist
+        const ls = JSON.parse(localStorage.getItem('lastVisited'))
+        expect(ls['verbrechen-von-nebenan'].lastVisited).to.be.greaterThan(0)
+        expect(ls['mordlust'].lastVisited).to.be.greaterThan(0)
+        expect(ls['zeit-verbrechen'].lastVisited).to.be.greaterThan(0)
+        expect(
+          ls['darfs-ein-bisschen-mord-sein'].lastVisited
+        ).to.be.greaterThan(0)
+        expect(ls['verbrechen-der-vergangenheit'].lastVisited).to.equal(0)
+      })
+    cy.get('[href="/verbrechen-der-vergangenheit"]').click()
+    cy.get('svg')
+      .click()
+      .should(() => {
+        expect(localStorage.getItem('lastVisited')).to.exist
+        const ls = JSON.parse(localStorage.getItem('lastVisited'))
+        expect(ls['verbrechen-von-nebenan'].lastVisited).to.be.greaterThan(0)
+        expect(ls['mordlust'].lastVisited).to.be.greaterThan(0)
+        expect(ls['zeit-verbrechen'].lastVisited).to.be.greaterThan(0)
+        expect(
+          ls['darfs-ein-bisschen-mord-sein'].lastVisited
+        ).to.be.greaterThan(0)
+        expect(
+          ls['verbrechen-der-vergangenheit'].lastVisited
+        ).to.be.greaterThan(0)
+      })
+  })
 })
