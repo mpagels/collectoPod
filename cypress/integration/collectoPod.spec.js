@@ -1,10 +1,9 @@
 beforeEach(() => {
   cy.visit('/')
-  cy.intercept('api', { fixture: 'api.json' })
 })
 
 describe('Visits collectoPod', () => {
-  it('checks if all the content is displayed correctly', () => {
+  it('checks if all the content is displayed correctly (data from real mongo)', () => {
     cy.contains('collectoPod')
     cy.contains('Your favorite podcasts in one place')
     cy.get('svg')
@@ -15,7 +14,8 @@ describe('Visits collectoPod', () => {
     ).should('have.length', 5)
   })
 
-  it('checks if "NEUER INHALT" tag works correctly', () => {
+  it('checks if "NEUER INHALT" tag works correctly (with fixture data)', () => {
+    cy.intercept('api', { fixture: 'api.json' })
     // crime selection
     cy.get(
       '[href="/verbrechen-von-nebenan"] > .CrimeNav__NavigateTo-sc-1dr41c-1 > [data-cy=newContent]'
@@ -104,7 +104,8 @@ describe('Visits collectoPod', () => {
     cy.get('@newDataRescherschenUndArschiv').should('exist')
     cy.get('@newDataZeitFfarrerstoechter').should('exist')
   })
-  it('checks if localStorage is set correctly', () => {
+  it('checks if localStorage is set correctly (with fixture data)', () => {
+    cy.intercept('api', { fixture: 'api.json' })
     expect(localStorage.getItem('lastVisited')).to.be.null
     cy.get('[href="/verbrechen-von-nebenan"]').click()
     cy.get('svg')
