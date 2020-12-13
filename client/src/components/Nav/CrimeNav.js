@@ -14,8 +14,11 @@ export default function CrimeNav({ lastUpdates, lastVisit }) {
         <Link to="/verbrechen-von-nebenan">
           <NavigateTo img={verbrechenVonNebenAnLogo}>
             {lastUpdates.length > 0 &&
-              lastUpdates[0].valueOf() > lastVisit?.verbrechen?.lastVisited && (
-                <New>NEUER INHALT</New>
+              lastUpdates[0].valueOf() >
+                lastVisit['verbrechen-von-nebenan']?.lastVisited && (
+                <New data-cy="newContent" data-cy="newContent">
+                  NEUER INHALT
+                </New>
               )}
           </NavigateTo>
         </Link>
@@ -23,7 +26,7 @@ export default function CrimeNav({ lastUpdates, lastVisit }) {
           <NavigateTo img={mordlustLogo}>
             {lastUpdates.length > 0 &&
               lastUpdates[1].valueOf() > lastVisit?.mordlust?.lastVisited && (
-                <New>NEUER INHALT</New>
+                <New data-cy="newContent">NEUER INHALT</New>
               )}
           </NavigateTo>
         </Link>
@@ -31,8 +34,8 @@ export default function CrimeNav({ lastUpdates, lastVisit }) {
           <NavigateTo img={zeitVerbrechenLogo}>
             {lastUpdates.length > 0 &&
               lastUpdates[2].valueOf() >
-                lastVisit?.zeit_verbrechen?.lastVisited && (
-                <New>NEUER INHALT</New>
+                lastVisit['zeit-verbrechen']?.lastVisited && (
+                <New data-cy="newContent">NEUER INHALT</New>
               )}
           </NavigateTo>
         </Link>
@@ -40,17 +43,17 @@ export default function CrimeNav({ lastUpdates, lastVisit }) {
           <NavigateTo img={darfsEinBisschenMordLogo}>
             {lastUpdates.length > 0 &&
               lastUpdates[3].valueOf() >
-                lastVisit?.darfs_ein_bisschen_mord_sein?.lastVisited && (
-                <New>NEUER INHALT</New>
+                lastVisit['darfs-ein-bisschen-mord-sein']?.lastVisited && (
+                <New data-cy="newContent">NEUER INHALT</New>
               )}
           </NavigateTo>
         </Link>
-        <Link to="/verbrechen_der_vergangenheit">
+        <Link to="/verbrechen-der-vergangenheit">
           <NavigateTo img={verbrechenDerVergangenheitLogo}>
             {lastUpdates.length > 0 &&
               lastUpdates[4].valueOf() >
-                lastVisit?.verbrechen_der_vergangenheit?.lastVisited && (
-                <New>NEUER INHALT</New>
+                lastVisit['verbrechen-der-vergangenheit']?.lastVisited && (
+                <New data-cy="newContent">NEUER INHALT</New>
               )}
           </NavigateTo>
         </Link>

@@ -15,7 +15,7 @@ export default function SubNavOther({ lastUpdates, lastVisit }) {
         <NavLogos src={coronaPodcastUpdateLogo} />
         {lastUpdates.length > 0 &&
           lastUpdates[10].valueOf() >
-            lastVisit?.ndr_corona_update?.lastVisited && (
+            lastVisit['ndr-corona-update']?.lastVisited && (
             <NewContentIndicator />
           )}
       </StyledLink>
@@ -23,39 +23,39 @@ export default function SubNavOther({ lastUpdates, lastVisit }) {
         <NavLogos src={spezialgelagerterSonderpodcastLogo} />
         {lastUpdates.length > 0 &&
           lastUpdates[9].valueOf() >
-            lastVisit?.spezialgelagerter_sonderpodcast?.lastVisited && (
+            lastVisit['spezialgelagerter-sonderpodcast']?.lastVisited && (
             <NewContentIndicator />
           )}
       </StyledLink>
-      <StyledLink to="/revisiting_sunnydale">
+      <StyledLink to="/revisiting-sunnydale">
         <NavLogos src={revisitingSunnydaleLogo} />
         {lastUpdates.length > 0 &&
           lastUpdates[5].valueOf() >
-            lastVisit?.revisiting_sunnydale?.lastVisited && (
+            lastVisit['revisiting-sunnydale']?.lastVisited && (
             <NewContentIndicator />
           )}
       </StyledLink>
-      <StyledLink to="/eineStundeHistory">
+      <StyledLink to="/eine-stunde-history">
         <NavLogos src={eineStundeHistory} />
         {lastUpdates.length > 0 &&
           lastUpdates[8].valueOf() >
-            lastVisit?.eineStundeHistory?.lastVisited && (
+            lastVisit['eine-stunde-history']?.lastVisited && (
             <NewContentIndicator />
           )}
       </StyledLink>
-      <StyledLink to="/rescherschen_und_arschiv">
+      <StyledLink to="/rescherschen-und-arschiv">
         <NavLogos src={arschivUndReschercheLogo} />
         {lastUpdates.length > 0 &&
           lastUpdates[7].valueOf() >
-            lastVisit?.rescherschen_und_arschiv?.lastVisited && (
+            lastVisit['rescherschen-und-arschiv']?.lastVisited && (
             <NewContentIndicator />
           )}
       </StyledLink>
-      <StyledLink to="/zeit_pfarrerstoechter">
+      <StyledLink to="/zeit-pfarrerstoechter">
         <NavLogos src={pfarrersToechterLogo} />
         {lastUpdates.length > 0 &&
           lastUpdates[6].valueOf() >
-            lastVisit?.zeit_pfarrerstoechter?.lastVisited && (
+            lastVisit['zeit-pfarrerstoechter']?.lastVisited && (
             <NewContentIndicator />
           )}
       </StyledLink>

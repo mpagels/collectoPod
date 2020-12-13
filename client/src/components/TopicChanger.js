@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 export default function TopicChanger({ currentTopic }) {
   if (currentTopic === 'crime') {
     return (
-      <Link to="/revisiting_sunnydale">
+      <Link to="/revisiting-sunnydale">
         <Button>ot</Button>
       </Link>
     )

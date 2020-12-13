@@ -13,7 +13,8 @@ export default function SubNavCrime({ lastUpdates, lastVisit }) {
       <StyledLink to="/verbrechen-von-nebenan">
         <NavLogos src={verbrechenVonNebenAnLogo} />
         {lastUpdates.length > 0 &&
-          lastUpdates[0].valueOf() > lastVisit?.verbrechen?.lastVisited && (
+          lastUpdates[0].valueOf() >
+            lastVisit['verbrechen-von-nebenan']?.lastVisited && (
             <NewContentIndicator />
           )}
       </StyledLink>
@@ -28,21 +29,23 @@ export default function SubNavCrime({ lastUpdates, lastVisit }) {
         <NavLogos src={zeitVerbrechenLogo} />
         {lastUpdates.length > 0 &&
           lastUpdates[2].valueOf() >
-            lastVisit?.zeit_verbrechen?.lastVisited && <NewContentIndicator />}
+            lastVisit['zeit-verbrechen']?.lastVisited && (
+            <NewContentIndicator />
+          )}
       </StyledLink>
       <StyledLink to="/darfs-ein-bisserl-mord-sein">
         <NavLogos src={darfsEinBisschenMordLogo} />
         {lastUpdates.length > 0 &&
           lastUpdates[3].valueOf() >
-            lastVisit?.darfs_ein_bisschen_mord_sein?.lastVisited && (
+            lastVisit['darfs-ein-bisschen-mord-sein']?.lastVisited && (
             <NewContentIndicator />
           )}
       </StyledLink>
-      <StyledLink to="/verbrechen_der_vergangenheit">
+      <StyledLink to="/verbrechen-der-vergangenheit">
         <NavLogos src={verbrechenDerVergangenheitLogo} />
         {lastUpdates.length > 0 &&
           lastUpdates[4].valueOf() >
-            lastVisit?.verbrechen_der_vergangenheit?.lastVisited && (
+            lastVisit['verbrechen-der-vergangenheit']?.lastVisited && (
             <NewContentIndicator />
           )}
       </StyledLink>
