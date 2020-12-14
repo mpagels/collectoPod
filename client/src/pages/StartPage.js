@@ -4,6 +4,8 @@ import CrimeNav from '../components/Nav/CrimeNav'
 import OtherNav from '../components/Nav/OtherNav'
 import Lottie from 'react-lottie'
 import animationData from '../assets/lotti/search-processing2.json'
+import { ReactComponent as SettingSVG } from '../assets/svg/settings-white-24dp.svg'
+import { Link, Switch } from 'react-router-dom'
 
 export default function StartPage({
   isLoading,
@@ -26,6 +28,13 @@ export default function StartPage({
       <Header>
         <AppTitle>collectoPod</AppTitle>
         <AppSubTitle>Your favorite podcasts in one place</AppSubTitle>
+        {isLoading ? null : (
+          <SettingWrapper>
+            <Link to="/settings">
+              <SettingButton />
+            </Link>
+          </SettingWrapper>
+        )}
       </Header>
       {isLoading ? (
         <Lottie options={defaultOptions} height={200} width={200} />
@@ -58,6 +67,20 @@ const Screen = styled.main`
 const Header = styled.header`
   display: flex;
   flex-direction: column;
+  position: relative;
+`
+const SettingWrapper = styled.div`
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+const SettingButton = styled(SettingSVG)`
+  cursor: pointer;
+  fill: grey;
 `
 const AppTitle = styled.h1`
   text-align: center;

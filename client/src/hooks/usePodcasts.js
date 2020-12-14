@@ -4,10 +4,8 @@ import getLastVisitFromLocalStorage from '../utils/podcastNames'
 
 export default function usePodcasts() {
   const [lastVisit, setLastVisit] = useState(getLastVisitFromLocalStorage())
-
   const { isLoading, error, data } = useQuery('mongo', () =>
-    fetch('/api') //${window.location.hostname}
-      .then((res) => res.json())
+    fetch('/api').then((res) => res.json())
   )
 
   if (isLoading) return { isLoading }

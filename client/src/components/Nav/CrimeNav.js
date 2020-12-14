@@ -8,21 +8,27 @@ import verbrechenVonNebenAnLogo from '../../assets/img/verbrechen-von-nebenan-bi
 import zeitVerbrechenLogo from '../../assets/img/zeit-verbrechen-big2.jpg'
 
 export default function CrimeNav({ lastUpdates, lastVisit }) {
+  console.log(lastUpdates)
   return (
     <Switch>
       <Podcasts>
-        <Link to="/verbrechen-von-nebenan">
-          <NavigateTo img={verbrechenVonNebenAnLogo}>
-            {lastUpdates.length > 0 &&
-              lastUpdates[0].valueOf() >
-                lastVisit['verbrechen-von-nebenan']?.lastVisited && (
-                <New data-cy="newContent" data-cy="newContent">
-                  NEUER INHALT
-                </New>
-              )}
-          </NavigateTo>
-        </Link>
-        <Link to="/mordlust">
+        {Object.keys(lastVisit)
+          .filter((podcast) => lastVisit[podcast].isActive)
+          .map((podcast) => (
+            <Link to={`/${Object.keys(podcast)}`}>
+              <NavigateTo img={verbrechenVonNebenAnLogo}>
+                {lastUpdates[`${Object.keys(podcast)}`].length > 0 &&
+                  lastUpdates[`${Object.keys(podcast)}`].valueOf() >
+                    lastVisit[`${Object.keys(podcast)}`]?.lastVisited && (
+                    <New data-cy="newContent" data-cy="newContent">
+                      NEUER INHALT
+                    </New>
+                  )}
+              </NavigateTo>
+            </Link>
+          ))}
+
+        {/* <Link to="/mordlust">
           <NavigateTo img={mordlustLogo}>
             {lastUpdates.length > 0 &&
               lastUpdates[1].valueOf() > lastVisit?.mordlust?.lastVisited && (
@@ -56,7 +62,7 @@ export default function CrimeNav({ lastUpdates, lastVisit }) {
                 <New data-cy="newContent">NEUER INHALT</New>
               )}
           </NavigateTo>
-        </Link>
+        </Link> */}
       </Podcasts>
     </Switch>
   )

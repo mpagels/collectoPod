@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 import PodCast from './pages/Podcast'
 import StartPage from './pages/StartPage'
 import usePodcasts from './hooks/usePodcasts'
+import Settings from './pages/Settings'
 
 function App() {
   const { isLoading, data, lastVisit, setLastVisit } = usePodcasts()
@@ -26,7 +27,9 @@ function App() {
       ndrCoronaUpdate,
     ] = data
 
-    const lastUpdates = lastUpdated.map((last) => new Date(last.lastUpdated))
+    const lastUpdates = lastUpdated.map((last) => {
+      return { ...last, lastUpdated: new Date(last.lastUpdated) }
+    })
 
     const routes = [
       {
@@ -131,6 +134,9 @@ function App() {
           />
         </Route>
       ))}
+      <Route path="/settings">
+        <Settings lastVisit={lastVisit} setLastVisit={setLastVisit} />
+      </Route>
       <Route path="/">
         <StartPage
           lastUpdates={t[1]}
