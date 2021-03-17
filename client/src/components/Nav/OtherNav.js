@@ -7,6 +7,8 @@ import pfarrersToechterLogo from '../../assets/img/pfarrerstoechter-big2.jpg'
 import revisitingSunnydaleLogo from '../../assets/img/revisiting-sunnydale-big2.jpg'
 import coronaPodcastUpdateLogo from '../../assets/img/corona-podcast-update-big2.jpg'
 import spezialgelagerterSonderpodcastLogo from '../../assets/img/spezialgelagerter-sonderpodcast-big2.jpg'
+import yourWrongAboutLogo from '../../assets/img/your-wrong-about-big2.jpg'
+import apokalypseUndFilterkaffeeLogo from '../../assets/img/apokalypse-und-filterkaffee-big2.jpg'
 
 export default function OtherNav({ lastUpdates, lastVisit }) {
   return (
@@ -62,6 +64,24 @@ export default function OtherNav({ lastUpdates, lastVisit }) {
             {lastUpdates.length > 0 &&
               lastUpdates[6].valueOf() >
                 lastVisit['zeit-pfarrerstoechter']?.lastVisited && (
+                <New>NEUER INHALT</New>
+              )}
+          </NavigateTo>
+        </Link>
+        <Link to="your-wrong-about">
+          <NavigateTo img={yourWrongAboutLogo}>
+            {lastUpdates.length > 0 &&
+              lastUpdates[11].valueOf() >
+                lastVisit['your-wrong-about']?.lastVisited && (
+                <New>NEUER INHALT</New>
+              )}
+          </NavigateTo>
+        </Link>
+        <Link to="apokalypse-und-filterkaffee">
+          <NavigateTo img={apokalypseUndFilterkaffeeLogo}>
+            {lastUpdates.length > 0 &&
+              lastUpdates[12].valueOf() >
+                lastVisit['apokalypse-und-filterkaffee']?.lastVisited && (
                 <New>NEUER INHALT</New>
               )}
           </NavigateTo>

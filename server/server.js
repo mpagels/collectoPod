@@ -66,6 +66,12 @@ async function run(res) {
     const eine_stunde_history = await collection.find().sort({ publish: -1 })
     collection = database.collection('ndr-corona-update')
     const ndrCoronaUpdate = await collection.find().sort({ publish: -1 })
+    collection = database.collection('your-wrong-about')
+    const yourWrongAbout = await collection.find().sort({ publish: -1 })
+    collection = database.collection('apokalypse-und-filterkaffee')
+    const apokalypseUndFilterkaffee = await collection
+      .find()
+      .sort({ publish: -1 })
     collection = database.collection('spezialgelagerter-sonderpodcast')
     const spezialgelagerterSonderpodcast = await collection
       .find()
@@ -78,7 +84,6 @@ async function run(res) {
       await verbrechen.toArray(),
       await mordlust.toArray(),
       await zeit_verbrechen.toArray(),
-      await darfs_ein_bisschen_mord_sein.toArray(),
       await verbrechen_der_vergangenheit.toArray(),
       await revisiting_sunnydale.toArray(),
       await zeit_pfarrerstoechter.toArray(),
@@ -86,6 +91,8 @@ async function run(res) {
       await eine_stunde_history.toArray(),
       await spezialgelagerterSonderpodcast.toArray(),
       await ndrCoronaUpdate.toArray(),
+      await yourWrongAbout.toArray(),
+      await apokalypseUndFilterkaffee.toArray(),
     ])
   } finally {
     // Ensures that the client will close when you finish/error

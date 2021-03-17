@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
-import darfsEinBisschenMordLogo from '../../assets/img/darfs-ein-bisschen-mord-sein-sm.jpg'
 import mordlustLogo from '../../assets/img/mordlust-sm.jpg'
 import verbrechenDerVergangenheitLogo from '../../assets/img/verbrechen-der-vergangenheit_sm.jpg'
 import verbrechenVonNebenAnLogo from '../../assets/img/verbrechen-von-nebenan-sm.jpg'
@@ -30,14 +29,6 @@ export default function SubNavCrime({ lastUpdates, lastVisit }) {
         {lastUpdates.length > 0 &&
           lastUpdates[2].valueOf() >
             lastVisit['zeit-verbrechen']?.lastVisited && (
-            <NewContentIndicator />
-          )}
-      </StyledLink>
-      <StyledLink to="/darfs-ein-bisserl-mord-sein">
-        <NavLogos src={darfsEinBisschenMordLogo} />
-        {lastUpdates.length > 0 &&
-          lastUpdates[3].valueOf() >
-            lastVisit['darfs-ein-bisschen-mord-sein']?.lastVisited && (
             <NewContentIndicator />
           )}
       </StyledLink>

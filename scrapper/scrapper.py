@@ -5,7 +5,7 @@ from scrapper_funcs import (get_xml_from, verbrechen, mordlust,
 zeit_verbrechen, darfs_ein_bisschen_mord_sein, 
 verbrechen_der_vergangenheit, revisiting_sunnydale, 
 zeit_pfarrerstoechter, rescherschen_und_arschiv, spezialgelagerter_sonderpodcast,
-eine_stunde_history, ndr_corona_update)
+eine_stunde_history, ndr_corona_update, your_wrong_about, apokalypse_und_filterkaffee)
 
 import logging
 import telegram
@@ -33,6 +33,8 @@ PODCASTS = [
     ["spezialgelagerter-sonderpodcast", spezialgelagerter_sonderpodcast, "https://spezialgelagert.de/feed/podcast/"],
     ["eine-stunde-history", eine_stunde_history, "http://www.deutschlandfunknova.de/podcast/eine-stunde-history"],
     ["ndr-corona-update", ndr_corona_update, "https://www.ndr.de/nachrichten/info/podcast4684.xml"],
+    ["your-wrong-about", your_wrong_about, "https://feeds.buzzsprout.com/1112270.rss"],
+    ["apokalypse-und-filterkaffee", apokalypse_und_filterkaffee, "https://apokalypse-und-filterkaffee.podigee.io/feed/mp3"],
     ]
 
 

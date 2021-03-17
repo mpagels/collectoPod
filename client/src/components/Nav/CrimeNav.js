@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from 'styled-components/macro'
 import { Link, Switch } from 'react-router-dom'
-import darfsEinBisschenMordLogo from '../../assets/img/darfs-ein-bisschen-mord-sein-big2.jpg'
 import mordlustLogo from '../../assets/img/mordlust-big2.jpg'
 import verbrechenDerVergangenheitLogo from '../../assets/img/verbrechen-der-vergangenheit_big2.jpg'
 import verbrechenVonNebenAnLogo from '../../assets/img/verbrechen-von-nebenan-big2.jpg'
@@ -16,9 +15,7 @@ export default function CrimeNav({ lastUpdates, lastVisit }) {
             {lastUpdates.length > 0 &&
               lastUpdates[0].valueOf() >
                 lastVisit['verbrechen-von-nebenan']?.lastVisited && (
-                <New data-cy="newContent" data-cy="newContent">
-                  NEUER INHALT
-                </New>
+                <New data-cy="newContent">NEUER INHALT</New>
               )}
           </NavigateTo>
         </Link>
@@ -35,15 +32,6 @@ export default function CrimeNav({ lastUpdates, lastVisit }) {
             {lastUpdates.length > 0 &&
               lastUpdates[2].valueOf() >
                 lastVisit['zeit-verbrechen']?.lastVisited && (
-                <New data-cy="newContent">NEUER INHALT</New>
-              )}
-          </NavigateTo>
-        </Link>
-        <Link to="/darfs-ein-bisserl-mord-sein">
-          <NavigateTo img={darfsEinBisschenMordLogo}>
-            {lastUpdates.length > 0 &&
-              lastUpdates[3].valueOf() >
-                lastVisit['darfs-ein-bisschen-mord-sein']?.lastVisited && (
                 <New data-cy="newContent">NEUER INHALT</New>
               )}
           </NavigateTo>

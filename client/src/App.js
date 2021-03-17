@@ -16,7 +16,6 @@ function App() {
       verbrechen,
       mordlust,
       zeitVerbrechen,
-      darfsEinBisschenMordSein,
       verbrechenDerVergangenheit,
       revisitingSunnydale,
       zeitPfarrerstoechter,
@@ -24,6 +23,8 @@ function App() {
       eineStundeHistory,
       spezialgelagerterSonderpodcast,
       ndrCoronaUpdate,
+      yourWrongAbout,
+      apokalypseUndFilterkaffee,
     ] = data
 
     const lastUpdates = lastUpdated.map((last) => new Date(last.lastUpdated))
@@ -49,13 +50,6 @@ function App() {
         podcastName: 'zeit-verbrechen',
         podcastGenre: 'crime',
         data: zeitVerbrechen,
-      },
-      {
-        path: '/darfs-ein-bisserl-mord-sein',
-        title: "Darf's ein bisserl Mord sein?",
-        podcastName: 'darfs-ein-bisschen-mord-sein',
-        podcastGenre: 'crime',
-        data: darfsEinBisschenMordSein,
       },
       {
         path: '/verbrechen-der-vergangenheit',
@@ -106,6 +100,20 @@ function App() {
         podcastName: 'eine-stunde-history',
         podcastGenre: 'other',
         data: eineStundeHistory,
+      },
+      {
+        path: '/your-wrong-about',
+        title: "You're Wrong About",
+        podcastName: 'your-wrong-about',
+        podcastGenre: 'other',
+        data: yourWrongAbout,
+      },
+      {
+        path: '/apokalypse-und-filterkaffee',
+        title: 'Apokalypse und Filterkaffee',
+        podcastName: 'apokalypse-und-filterkaffee',
+        podcastGenre: 'other',
+        data: apokalypseUndFilterkaffee,
       },
     ]
 
