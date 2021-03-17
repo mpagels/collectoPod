@@ -31,6 +31,7 @@ pm2_logger*
 
 # python env
 /scrapper/scrapper
+/scrapper/venv
 /scrapper/__pycache__
 
 #cypress

@@ -7,6 +7,8 @@ import pfarrersToechterLogo from '../../assets/img/pfarrerstoechter-sm.jpg'
 import eineStundeHistory from '../../assets/img/eine-stunde-history-sm.jpg'
 import coronaPodcastUpdateLogo from '../../assets/img/corona-podcast-update-sm.jpg'
 import spezialgelagerterSonderpodcastLogo from '../../assets/img/spezialgelagerter-sonderpodcast-sm.jpg'
+import yourWrongAboutLogo from '../../assets/img/your-wrong-about-sm.jpg'
+import apokalypseUndFilterkaffeeLogo from '../../assets/img/apokalypse-und-filterkaffee-sm.jpg'
 
 export default function SubNavOther({ lastUpdates, lastVisit }) {
   return (
@@ -59,6 +61,22 @@ export default function SubNavOther({ lastUpdates, lastVisit }) {
             <NewContentIndicator />
           )}
       </StyledLink>
+      <StyledLink to="/your-wrong-about">
+        <NavLogos src={yourWrongAboutLogo} />
+        {lastUpdates.length > 0 &&
+          lastUpdates[11].valueOf() >
+            lastVisit['your-wrong-about']?.lastVisited && (
+            <NewContentIndicator />
+          )}
+      </StyledLink>
+      <StyledLink to="/apokalypse-und-filterkaffee">
+        <NavLogos src={apokalypseUndFilterkaffeeLogo} />
+        {lastUpdates.length > 0 &&
+          lastUpdates[12].valueOf() >
+            lastVisit['apokalypse-und-filterkaffee']?.lastVisited && (
+            <NewContentIndicator />
+          )}
+      </StyledLink>
     </>
   )
 }
@@ -68,8 +86,8 @@ const NavLogos = styled.img`
   cursor: pointer;
   box-shadow: 0 0 5px black;
   outline: none;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
 `
 const StyledLink = styled(Link)`
   display: flex;

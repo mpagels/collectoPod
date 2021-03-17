@@ -10,6 +10,8 @@ const podcastNames = [
   'eine-stunde-history',
   'spezialgelagerter-sonderpodcast',
   'ndr-corona-update',
+  'your-wrong-about',
+  'apokalypse-und-filterkaffee',
 ]
 
 export default function getLastVisitFromLocalStorage() {
